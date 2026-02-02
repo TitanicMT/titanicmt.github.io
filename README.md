@@ -1,10 +1,10 @@
-# Zongheng (Marcus) Tian - Portfolio
+# Marcus (Zongheng) Tian - Portfolio
 
 This is my personal portfolio website showcasing my projects and skills as a UI/UX Designer, Game Developer, and Technology Enthusiast.
 
 ## About Me
 
-I am Zongheng (Marcus) Tian, a UI/UX Designer with a passion for game development. I create user-friendly digital experiences and interactive applications that focus on usability and engagement.
+I am Marcus (Zongheng) Tian, a UI/UX Designer with a passion for game development. I create user-friendly digital experiences and interactive applications that focus on usability and engagement.
 
 ## Features
 

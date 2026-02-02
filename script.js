@@ -1,5 +1,5 @@
 // Immediate function to ensure header visibility with direct inline styles
-(function() {
+(function () {
     // Force header visibility by applying inline styles with highest priority
     const nav = document.querySelector('.main-nav');
     if (nav) {
@@ -16,7 +16,7 @@
             width: 100% !important;
         `;
         nav.classList.add('js-fix-header');
-        
+
         // Ensure main content doesn't hide under the header
         const main = document.querySelector('main');
         if (main) {
@@ -32,7 +32,7 @@ function animateStats() {
         threshold: 0.5,
         rootMargin: "0px 0px -100px 0px"
     };
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -42,30 +42,131 @@ function animateStats() {
                 const steps = 50;
                 const stepValue = targetValue / steps;
                 let currentStep = 0;
-                
+
                 const counter = setInterval(() => {
                     currentStep++;
                     const progress = Math.min(currentStep / steps, 1);
                     const currentValue = Math.floor(progress * targetValue);
                     target.textContent = currentValue + "+";
-                    
+
                     if (currentStep >= steps) {
                         clearInterval(counter);
                     }
                 }, duration / steps);
-                
+
                 observer.unobserve(target);
             }
         });
     }, options);
-    
+
     stats.forEach(stat => {
         observer.observe(stat);
     });
 }
 
+// Theme Management - Immediate execution to prevent FOUC
+const ThemeManager = {
+    getStoredTheme: () => {
+        try {
+            return localStorage.getItem("theme");
+        } catch (e) {
+            console.warn("ThemeManager: Unable to access localStorage", e);
+            return null;
+        }
+    },
+    getSystemTheme: () => {
+        if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            return "dark";
+        }
+        return "light";
+    },
+
+    getActiveTheme: function () {
+        const stored = this.getStoredTheme();
+        if (stored) {
+            console.log(`ThemeManager: Using stored preference: ${stored}`);
+            return stored;
+        }
+        const system = this.getSystemTheme();
+        console.log(`ThemeManager: Using system preference: ${system}`);
+        return system;
+    },
+
+    applyTheme: function (theme) {
+        // Toggle body class
+        if (theme === 'dark') {
+            document.body.classList.add('dark-theme');
+        } else {
+            document.body.classList.remove('dark-theme');
+        }
+
+        // Update header border if scrolled
+        const nav = document.querySelector('.main-nav');
+        if (nav && window.scrollY > 50) {
+            nav.style.borderBottom = theme === 'dark'
+                ? '1px solid rgba(255, 255, 255, 0.1)'
+                : '1px solid rgba(0, 0, 0, 0.1)';
+        }
+
+        // Notify header iframe
+        const headerFrame = document.querySelector('iframe[src*="header.html"]');
+        if (headerFrame && headerFrame.contentWindow) {
+            try {
+                headerFrame.contentWindow.postMessage({
+                    type: 'update-theme',
+                    isDark: theme === 'dark'
+                }, '*');
+            } catch (e) {
+                console.error('Error communicating with header iframe:', e);
+            }
+        }
+    },
+
+    updateIcons: function (isDark) {
+        const icons = document.querySelectorAll('.theme-toggle i');
+        icons.forEach(icon => {
+            if (isDark) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+    },
+
+    init: function () {
+        // Apply initial theme immediately
+        this.applyTheme(this.getActiveTheme());
+
+        // Listen for system theme changes
+        if (window.matchMedia) {
+            const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+            const handleChange = (e) => {
+                if (!this.getStoredTheme()) {
+                    console.log(`ThemeManager: System theme changed to ${e.matches ? "dark" : "light"}`);
+                    this.applyTheme(e.matches ? "dark" : "light");
+                    this.updateIcons(e.matches);
+                } else {
+                    console.log("ThemeManager: Ignoring system change due to stored preference");
+                }
+            };
+
+            // Support both modern and legacy listener methods
+            if (mediaQuery.addEventListener) {
+                mediaQuery.addEventListener('change', handleChange);
+            } else if (mediaQuery.addListener) {
+                mediaQuery.addListener(handleChange);
+            }
+        }
+    }
+};
+
+// Initialize theme immediately
+ThemeManager.init();
+
 // Projects filtering functionality
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Initialize stats animation
     animateStats();
 
@@ -79,14 +180,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Add scroll effect to header
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         const nav = document.querySelector('.main-nav');
-        
+
         // Force visibility with every scroll event
         nav.style.visibility = 'visible';
         nav.style.opacity = '1';
         nav.style.display = 'flex';
-        
+
         // Apply appropriate styling based on scroll position
         if (window.scrollY > 50) {
             nav.style.padding = '10px 0';
@@ -94,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Use the CSS variable for background color to respect dark mode
             nav.style.background = 'var(--nav-bg)';
             // Use a CSS variable for border color in dark mode
-            nav.style.borderBottom = document.body.classList.contains('dark-theme') 
+            nav.style.borderBottom = document.body.classList.contains('dark-theme')
                 ? '1px solid rgba(255, 255, 255, 0.1)'
                 : '1px solid rgba(0, 0, 0, 0.1)';
         } else {
@@ -104,22 +205,22 @@ document.addEventListener('DOMContentLoaded', function() {
             nav.style.borderBottom = 'none';
         }
     });
-    
+
     const filterBtns = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
-    
+
     // Add click event to filter buttons
     filterBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', function () {
             // Remove active class from all buttons
             filterBtns.forEach(btn => btn.classList.remove('active'));
-            
+
             // Add active class to clicked button
             this.classList.add('active');
-            
+
             // Get filter value
             const filterValue = this.getAttribute('data-filter');
-            
+
             // Filter projects
             projectCards.forEach(card => {
                 // Show all projects if 'all' filter is selected
@@ -131,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     // Get card categories
                     const categories = card.getAttribute('data-category').split(' ');
-                    
+
                     // Check if card has the selected category
                     if (categories.includes(filterValue)) {
                         card.style.display = 'flex';
@@ -153,27 +254,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const highlightReel = document.querySelector('.highlight-reel-container');
     if (highlightReel) {
         const highlightReelSection = document.querySelector('.highlight-reel-section');
-        
+
         // Show/hide scroll indicators based on scroll position
         function updateScrollIndicators() {
             const isScrolledLeft = highlightReel.scrollLeft <= 10;
             const isScrolledRight = highlightReel.scrollLeft >= (highlightReel.scrollWidth - highlightReel.offsetWidth - 10);
-            
+
             // Update before pseudo-element (left indicator)
             highlightReelSection.style.setProperty('--left-indicator-opacity', isScrolledLeft ? '0' : '1');
-            
+
             // Update after pseudo-element (right indicator)
             highlightReelSection.style.setProperty('--right-indicator-opacity', isScrolledRight ? '0' : '1');
         }
-        
+
         // Set initial state
         updateScrollIndicators();
-        
+
         // Update on scroll
         highlightReel.addEventListener('scroll', updateScrollIndicators);
-        
+
         // Add keyboard navigation for accessibility
-        highlightReel.addEventListener('keydown', function(e) {
+        highlightReel.addEventListener('keydown', function (e) {
             if (e.key === 'ArrowLeft') {
                 highlightReel.scrollBy({ left: -300, behavior: 'smooth' });
                 e.preventDefault();
@@ -182,145 +283,61 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault();
             }
         });
-        
+
         // Make cards focusable for keyboard navigation
         document.querySelectorAll('.highlight-card').forEach(card => {
             card.setAttribute('tabindex', '0');
         });
-        
+
         // Resize observer for when window size changes
         const resizeObserver = new ResizeObserver(() => {
             updateScrollIndicators();
         });
-        
+
         resizeObserver.observe(highlightReel);
     }
-    
-    // Dark mode functionality
+
+    // Dark mode functionality - Event Listeners
     const themeToggle = document.getElementById('themeToggle');
     const themeToggleMobile = document.getElementById('themeToggleMobile');
-    
-    if (themeToggle && themeToggleMobile) {
-        // Check for saved theme preference or respect OS preference
-        const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
-        const currentTheme = localStorage.getItem("theme");
-        
-        // Apply theme preference
-        let isDarkMode = false;
-        if (currentTheme === "dark") {
-            document.body.classList.add('dark-theme');
-            updateThemeIcons(true);
-            isDarkMode = true;
-        } else if (currentTheme === "light") {
-            document.body.classList.remove('dark-theme');
-            updateThemeIcons(false);
-            isDarkMode = false;
-        } else if (prefersDarkScheme.matches) {
-            document.body.classList.add('dark-theme');
-            updateThemeIcons(true);
-            isDarkMode = true;
-        }
-        
-        // Update moon/sun icons
-        function updateThemeIcons(isDark) {
-            const themeIcons = [
-                themeToggle.querySelector('i'),
-                themeToggleMobile.querySelector('i')
-            ];
-            
-            themeIcons.forEach(icon => {
-                if (isDark) {
-                    icon.classList.remove('fa-moon');
-                    icon.classList.add('fa-sun');
-                } else {
-                    icon.classList.remove('fa-sun');
-                    icon.classList.add('fa-moon');
-                }
-            });
-        }
-        
-        // Update header border color based on initial theme
-        const nav = document.querySelector('.main-nav');
-        if (nav && window.scrollY > 50) {
-            nav.style.borderBottom = isDarkMode 
-                ? '1px solid rgba(255, 255, 255, 0.1)'
-                : '1px solid rgba(0, 0, 0, 0.1)';
-        }
-        
-        // Notify any header iframe about the initial theme
-        setTimeout(() => {
-            const headerFrame = document.querySelector('iframe[src*="header.html"]');
-            if (headerFrame && headerFrame.contentWindow) {
-                try {
-                    headerFrame.contentWindow.postMessage({
-                        type: 'update-theme',
-                        isDark: isDarkMode
-                    }, '*');
-                } catch (e) {
-                    console.error('Error communicating with header iframe:', e);
-                }
-            }
-        }, 500); // Small delay to ensure iframe is loaded
-        
-        // Theme toggle click handler
-        function toggleTheme() {
-            const isDarkMode = !document.body.classList.contains('dark-theme');
-            
-            if (!isDarkMode) {
-                document.body.classList.remove('dark-theme');
-                localStorage.setItem("theme", "light");
-                updateThemeIcons(false);
-            } else {
-                document.body.classList.add('dark-theme');
-                localStorage.setItem("theme", "dark");
-                updateThemeIcons(true);
-            }
-            
-            // Update the header border color based on the new theme
-            const nav = document.querySelector('.main-nav');
-            if (nav && window.scrollY > 50) {
-                nav.style.borderBottom = isDarkMode 
-                    ? '1px solid rgba(255, 255, 255, 0.1)'
-                    : '1px solid rgba(0, 0, 0, 0.1)';
-            }
-            
-            // Notify any header iframe about the theme change
-            const headerFrame = document.querySelector('iframe[src*="header.html"]');
-            if (headerFrame && headerFrame.contentWindow) {
-                try {
-                    headerFrame.contentWindow.postMessage({
-                        type: 'update-theme',
-                        isDark: isDarkMode
-                    }, '*');
-                } catch (e) {
-                    console.error('Error communicating with header iframe:', e);
-                }
-            }
-        }
-        
-        // Event listeners for theme toggle
-        themeToggle.addEventListener('click', toggleTheme);
-        themeToggleMobile.addEventListener('click', toggleTheme);
+
+    // Initial icon update based on current state
+    const currentTheme = ThemeManager.getActiveTheme();
+    ThemeManager.updateIcons(currentTheme === 'dark');
+
+    function handleThemeToggle() {
+        const isDark = document.body.classList.contains('dark-theme');
+        const newTheme = isDark ? 'light' : 'dark';
+
+        // Save preference
+        localStorage.setItem("theme", newTheme);
+
+        // Apply new theme
+        ThemeManager.applyTheme(newTheme);
+        ThemeManager.updateIcons(newTheme === 'dark');
     }
-    
+
+    if (themeToggle) themeToggle.addEventListener('click', handleThemeToggle);
+    if (themeToggleMobile) themeToggleMobile.addEventListener('click', handleThemeToggle);
+
     // Back to top button functionality
     const backToTopBtn = document.createElement('button');
     backToTopBtn.className = 'back-to-top';
     backToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
     backToTopBtn.setAttribute('aria-label', 'Back to top');
     document.body.appendChild(backToTopBtn);
-    
+
     // Show/hide back to top button based on scroll position
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         if (window.scrollY > 500) {
             backToTopBtn.classList.add('visible');
         } else {
             backToTopBtn.classList.remove('visible');
         }
     });
-    
+
     // Scroll to top when button is clicked
-    backToTopBtn.addEventListener('click', function() {
+    backToTopBtn.addEventListener('click', function () {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -332,7 +349,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const sidebar = document.getElementById('mobileSidebar');
     const overlay = document.getElementById('sidebarOverlay');
     const closeBtn = document.getElementById('closeSidebar');
-    
+
     if (hamburger && sidebar && overlay && closeBtn) {
         // Toggle sidebar function
         function toggleSidebar() {
@@ -340,26 +357,26 @@ document.addEventListener('DOMContentLoaded', function() {
             overlay.style.display = sidebar.classList.contains('active') ? 'block' : 'none';
             document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
         }
-        
+
         // Event listeners for mobile menu
         hamburger.addEventListener('click', toggleSidebar);
-        hamburger.addEventListener('keydown', function(e) {
+        hamburger.addEventListener('keydown', function (e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 toggleSidebar();
                 e.preventDefault();
             }
         });
-        
+
         closeBtn.addEventListener('click', toggleSidebar);
-        closeBtn.addEventListener('keydown', function(e) {
+        closeBtn.addEventListener('keydown', function (e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 toggleSidebar();
                 e.preventDefault();
             }
         });
-        
+
         overlay.addEventListener('click', toggleSidebar);
-        
+
         // Close sidebar when clicking a mobile nav link
         document.querySelectorAll('.mobile-nav-links a').forEach(link => {
             link.addEventListener('click', toggleSidebar);
@@ -369,22 +386,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        
+
         const targetId = this.getAttribute('href');
         const targetElement = document.querySelector(targetId);
-        
+
         if (targetElement) {
             window.scrollTo({
                 top: targetElement.offsetTop - 80, // Adjust for fixed header
                 behavior: 'smooth'
             });
-            
+
             // Close mobile sidebar if open
             const mobileSidebar = document.getElementById('mobileSidebar');
             const sidebarOverlay = document.getElementById('sidebarOverlay');
-            
+
             if (mobileSidebar && mobileSidebar.classList.contains('active')) {
                 mobileSidebar.classList.remove('active');
                 if (sidebarOverlay) {
@@ -402,11 +419,11 @@ window.addEventListener('load', revealOnScroll);
 
 function revealOnScroll() {
     const revealElements = document.querySelectorAll('.reveal');
-    
+
     revealElements.forEach(element => {
         const elementTop = element.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
-        
+
         if (elementTop < windowHeight - 100) {
             element.classList.add('revealed');
         }
