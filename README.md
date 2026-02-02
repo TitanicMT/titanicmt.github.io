@@ -1,6 +1,6 @@
 # Marcus (Zongheng) Tian - Portfolio
 
-This is my personal portfolio website showcasing my projects and skills as a UI/UX Designer, Game Developer, and Technology Enthusiast.
+This is my personal portfolio website showcasing my projects and skills as a UI/UX Designer, Game Developer, and Technology Enthusiast. This website is built with HTML, CSS, and JavaScript, and is hosted on GitHub Pages.
 
 ## About Me
 
