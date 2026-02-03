@@ -250,52 +250,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Highlight Reel Functionality
-    const highlightReel = document.querySelector('.highlight-reel-container');
-    if (highlightReel) {
-        const highlightReelSection = document.querySelector('.highlight-reel-section');
 
-        // Show/hide scroll indicators based on scroll position
-        function updateScrollIndicators() {
-            const isScrolledLeft = highlightReel.scrollLeft <= 10;
-            const isScrolledRight = highlightReel.scrollLeft >= (highlightReel.scrollWidth - highlightReel.offsetWidth - 10);
-
-            // Update before pseudo-element (left indicator)
-            highlightReelSection.style.setProperty('--left-indicator-opacity', isScrolledLeft ? '0' : '1');
-
-            // Update after pseudo-element (right indicator)
-            highlightReelSection.style.setProperty('--right-indicator-opacity', isScrolledRight ? '0' : '1');
-        }
-
-        // Set initial state
-        updateScrollIndicators();
-
-        // Update on scroll
-        highlightReel.addEventListener('scroll', updateScrollIndicators);
-
-        // Add keyboard navigation for accessibility
-        highlightReel.addEventListener('keydown', function (e) {
-            if (e.key === 'ArrowLeft') {
-                highlightReel.scrollBy({ left: -300, behavior: 'smooth' });
-                e.preventDefault();
-            } else if (e.key === 'ArrowRight') {
-                highlightReel.scrollBy({ left: 300, behavior: 'smooth' });
-                e.preventDefault();
-            }
-        });
-
-        // Make cards focusable for keyboard navigation
-        document.querySelectorAll('.highlight-card').forEach(card => {
-            card.setAttribute('tabindex', '0');
-        });
-
-        // Resize observer for when window size changes
-        const resizeObserver = new ResizeObserver(() => {
-            updateScrollIndicators();
-        });
-
-        resizeObserver.observe(highlightReel);
-    }
 
     // Dark mode functionality - Event Listeners
     const themeToggle = document.getElementById('themeToggle');
@@ -413,9 +368,62 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Video Modal Functionality
+const videoModal = document.getElementById('videoModal');
+const videoFrame = document.getElementById('videoFrame');
+const closeVideoModal = document.querySelector('.close-video-modal');
+const videoTriggers = document.querySelectorAll('.video-trigger');
+
+if (videoModal && videoFrame && videoTriggers.length > 0) {
+
+    // Open modal
+    videoTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function (e) {
+            e.preventDefault();
+            const videoSrc = this.getAttribute('data-video-src');
+            if (videoSrc) {
+                videoFrame.src = videoSrc;
+                videoModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            }
+        });
+    });
+
+    // Close modal function
+    const closeModal = () => {
+        videoModal.classList.remove('active');
+        // Wait for transition to finish before clearing src specifically
+        setTimeout(() => {
+            videoFrame.src = '';
+        }, 300);
+        document.body.style.overflow = ''; // Restore scrolling
+    };
+
+    // Close on X click
+    if (closeVideoModal) {
+        closeVideoModal.addEventListener('click', closeModal);
+    }
+
+    // Close on outside click
+    videoModal.addEventListener('click', function (e) {
+        if (e.target === videoModal) {
+            closeModal();
+        }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+}
+
 // Scroll reveal animations
+// Use window events to trigger scroll reveal, but check function existence first
 window.addEventListener('scroll', revealOnScroll);
 window.addEventListener('load', revealOnScroll);
+
 
 function revealOnScroll() {
     const revealElements = document.querySelectorAll('.reveal');
