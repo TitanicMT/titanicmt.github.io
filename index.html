@@ -27,7 +27,7 @@
     <link rel="apple-touch-icon" href="images/site-icon.jpg">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="styles.css?v=2">
+    <link rel="stylesheet" href="styles.css?v=6">
     <link rel="stylesheet" href="header-fix.css?v=2">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
@@ -61,12 +61,7 @@
             background-color: var(--nav-bg) !important;
         }
 
-        /* Prevent card transforms from creating stacking contexts 11 */
-        .project-card:hover,
-        .highlight-card:hover {
-            transform: none !important;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
-        }
+
 
         /* Ensure main content has proper padding */
         main {
@@ -183,44 +178,57 @@
             <section id="featured-image" class="featured-image-section"
                 style="margin: 20px 0; padding: 0; position: relative;">
                 <div class="featured-image-container"
-                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch;">
                     <div class="featured-image-wrapper"
                         style="position: relative; overflow: hidden; border-radius: var(--border-radius); box-shadow: var(--shadow-md); aspect-ratio: 3/4; transition: transform 0.5s ease, box-shadow 0.5s ease;">
                         <img src="images/hero-profile.jpg" alt="Marcus Tian" class="featured-portrait"
                             style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease;">
                     </div>
-                    <div class="featured-image-text" style="display: flex; flex-direction: column; gap: 20px;">
-                        <h2 style="position: relative; padding-bottom: 15px; margin-bottom: 5px;">Creating Meaningful
-                            Experiences
-                            <span
-                                style="content: ''; position: absolute; bottom: 0; left: 0; width: 60px; height: 4px; background: var(--primary); border-radius: 0; display: block;"></span>
-                        </h2>
-                        <p style="font-size: 1.125rem; max-width: 540px; margin-bottom: 30px; color: var(--text);">I
-                            combine aesthetics and functionality to craft meaningful digital experiences that resonate
-                            with users. My approach blends research, creativity, and technical expertise to solve
-                            complex design challenges.</p>
-                        <div class="featured-stats" style="display: flex; gap: 40px; margin-top: 20px;">
-                            <div class="stat" style="display: flex; flex-direction: column;">
-                                <span class="stat-number"
-                                    style="font-size: 2.5rem; font-weight: 700; color: var(--primary); line-height: 1; margin-bottom: 5px;">5+</span>
-                                <span class="stat-label"
-                                    style="font-size: 0.9rem; color: var(--gray-600); font-weight: 500;">Years
-                                    Experience</span>
-                            </div>
-                            <div class="stat" style="display: flex; flex-direction: column;">
-                                <span class="stat-number"
-                                    style="font-size: 2.5rem; font-weight: 700; color: var(--primary); line-height: 1; margin-bottom: 5px;">20+</span>
-                                <span class="stat-label"
-                                    style="font-size: 0.9rem; color: var(--gray-600); font-weight: 500;">Projects</span>
-                            </div>
-                            <div class="stat" style="display: flex; flex-direction: column;">
-                                <span class="stat-number"
-                                    style="font-size: 2.5rem; font-weight: 700; color: var(--primary); line-height: 1; margin-bottom: 5px;">15+</span>
-                                <span class="stat-label"
-                                    style="font-size: 0.9rem; color: var(--gray-600); font-weight: 500;">Happy
-                                    Clients</span>
+                    <div class="featured-image-text" style="display: flex; flex-direction: column;">
+                        <div style="flex: 1;"></div>
+                        <div>
+                            <h2 style="position: relative; padding-bottom: 15px; margin-bottom: 5px;">Creating
+                                Meaningful
+                                Experiences
+                                <span
+                                    style="content: ''; position: absolute; bottom: 0; left: 0; width: 60px; height: 4px; background: var(--primary); border-radius: 0; display: block;"></span>
+                            </h2>
+                            <p style="font-size: 1.125rem; max-width: 540px; margin-bottom: 30px; color: var(--text);">I
+                                combine aesthetics and functionality to craft meaningful digital experiences that
+                                resonate
+                                with users. My approach blends research, creativity, and technical expertise to solve
+                                complex design challenges.</p>
+                            <div class="featured-stats" style="display: flex; gap: 40px; margin-top: 20px;">
+                                <div class="stat" style="display: flex; flex-direction: column;">
+                                    <span class="stat-number"
+                                        style="font-size: 2.5rem; font-weight: 700; color: var(--primary); line-height: 1; margin-bottom: 5px;">5+</span>
+                                    <span class="stat-label"
+                                        style="font-size: 0.9rem; color: var(--gray-600); font-weight: 500;">Years
+                                        Experience</span>
+                                </div>
+                                <div class="stat" style="display: flex; flex-direction: column;">
+                                    <span class="stat-number"
+                                        style="font-size: 2.5rem; font-weight: 700; color: var(--primary); line-height: 1; margin-bottom: 5px;">20+</span>
+                                    <span class="stat-label"
+                                        style="font-size: 0.9rem; color: var(--gray-600); font-weight: 500;">Projects</span>
+                                </div>
+                                <div class="stat" style="display: flex; flex-direction: column;">
+                                    <span class="stat-number"
+                                        style="font-size: 2.5rem; font-weight: 700; color: var(--primary); line-height: 1; margin-bottom: 5px;">15+</span>
+                                    <span class="stat-label"
+                                        style="font-size: 0.9rem; color: var(--gray-600); font-weight: 500;">Happy
+                                        Clients</span>
+                                </div>
                             </div>
                         </div>
+                        <div style="flex: 1;"></div>
+                        <div>
+                            <a href="https://www.linkedin.com/in/zongheng-tian/" target="_blank"
+                                rel="noopener noreferrer" class="project-link">
+                                Connect with me on LinkedIn <i class="fab fa-linkedin"></i>
+                            </a>
+                        </div>
+                        <div style="flex: 1;"></div>
                     </div>
                 </div>
             </section>
@@ -236,51 +244,68 @@
                     <!-- Commuters Companion -->
                     <div class="highlight-card">
                         <div class="highlight-img">
-                            <img src="https://zonghengtian.wordpress.com/wp-content/uploads/2025/01/frame-43.png"
-                                alt="Helping Commuters Project" loading="lazy">
+                            <a href="https://chipped-carpet-f30.notion.site/Helping-Commuters-Find-Quality-Companions-1568912eb0b580058fc5d5b8029d5383?pvs=4"
+                                target="_blank" rel="noreferrer noopener" class="stealth-link">
+                                <img src="https://zonghengtian.wordpress.com/wp-content/uploads/2025/01/frame-43.png"
+                                    alt="Helping Commuters Project" loading="lazy">
+                            </a>
                         </div>
                         <div class="highlight-tags">
                             <span class="project-tag">UI/UX</span>
                             <span class="project-tag">User Research</span>
                         </div>
-                        <h3>Commute Companion</h3>
+                        <h3 class="project-title"><a
+                                href="https://chipped-carpet-f30.notion.site/Helping-Commuters-Find-Quality-Companions-1568912eb0b580058fc5d5b8029d5383?pvs=4"
+                                target="_blank" rel="noreferrer noopener" class="stealth-link">Commute Companion</a>
+                        </h3>
                         <p>A complete UI/UX solution helping commuters find quality companions for their daily journeys,
                             improving the commuting experience.</p>
                         <a href="https://chipped-carpet-f30.notion.site/Helping-Commuters-Find-Quality-Companions-1568912eb0b580058fc5d5b8029d5383?pvs=4"
-                            target="_blank" rel="noreferrer noopener" class="highlight-link">View Case Study</a>
+                            target="_blank" rel="noreferrer noopener" class="highlight-link">View Case Study <i
+                                class="fas fa-up-right-from-square"></i></a>
                     </div>
 
                     <!-- Information Architecture -->
                     <div class="highlight-card">
                         <div class="highlight-img">
-                            <img src="https://zonghengtian.wordpress.com/wp-content/uploads/2025/01/ux-tweak.jpg"
-                                alt="Information Architecture Projects" loading="lazy">
+                            <a href="information-architecture-projects.html" class="stealth-link">
+                                <img src="https://zonghengtian.wordpress.com/wp-content/uploads/2025/01/ux-tweak.jpg"
+                                    alt="Information Architecture Projects" loading="lazy">
+                            </a>
                         </div>
                         <div class="highlight-tags">
                             <span class="project-tag">UI/UX</span>
                             <span class="project-tag">Information Design</span>
                         </div>
-                        <h3>Information Architecture</h3>
+                        <h3 class="project-title"><a href="information-architecture-projects.html"
+                                class="stealth-link">Information Architecture</a></h3>
                         <p>Comprehensive analysis and improvement of website structures using tree testing, card
                             sorting, and content inventory tools.</p>
-                        <a href="information-architecture-projects.html" class="highlight-link">View Details</a>
+                        <a href="information-architecture-projects.html" class="highlight-link">View Details <i
+                                class="fas fa-arrow-right"></i></a>
                     </div>
 
                     <!-- PitchIn Event Organizer -->
                     <div class="highlight-card">
                         <div class="highlight-img">
-                            <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                                alt="PitchIn Event Organizer" loading="lazy">
+                            <a href="https://chipped-carpet-f30.notion.site/PitchIn-Collaborative-Event-Planning-App-Project-Documentation-1dc8912eb0b580309691f64ebca9538d?pvs=4"
+                                target="_blank" rel="noreferrer noopener" class="stealth-link">
+                                <img src="images/pitchin-thumbnail.png" alt="PitchIn Event Organizer" loading="lazy">
+                            </a>
                         </div>
                         <div class="highlight-tags">
                             <span class="project-tag">UI/UX</span>
                             <span class="project-tag">Collaborative Design</span>
                         </div>
-                        <h3>PitchIn Event Organizer</h3>
+                        <h3 class="project-title"><a
+                                href="https://chipped-carpet-f30.notion.site/PitchIn-Collaborative-Event-Planning-App-Project-Documentation-1dc8912eb0b580309691f64ebca9538d?pvs=4"
+                                target="_blank" rel="noreferrer noopener" class="stealth-link">PitchIn Event
+                                Organizer</a></h3>
                         <p>A collaborative platform for friends and communities to plan events together with features
                             for task delegation and expense sharing.</p>
                         <a href="https://chipped-carpet-f30.notion.site/PitchIn-Collaborative-Event-Planning-App-Project-Documentation-1dc8912eb0b580309691f64ebca9538d?pvs=4"
-                            target="_blank" rel="noreferrer noopener" class="highlight-link">View Details</a>
+                            target="_blank" rel="noreferrer noopener" class="highlight-link">View Details <i
+                                class="fas fa-up-right-from-square"></i></a>
                     </div>
                 </div>
             </section>
@@ -302,8 +327,11 @@
                     <!-- Helping Commuters Find Quality Companions -->
                     <div class="project-card" data-category="uiux">
                         <div class="project-img">
-                            <img src="https://zonghengtian.wordpress.com/wp-content/uploads/2025/01/frame-43.png"
-                                alt="Helping Commuters Project" loading="lazy">
+                            <a href="https://chipped-carpet-f30.notion.site/Helping-Commuters-Find-Quality-Companions-1568912eb0b580058fc5d5b8029d5383?pvs=4"
+                                target="_blank" rel="noreferrer noopener" class="stealth-link">
+                                <img src="https://zonghengtian.wordpress.com/wp-content/uploads/2025/01/frame-43.png"
+                                    alt="Helping Commuters Project" loading="lazy">
+                            </a>
                         </div>
                         <div class="project-content">
                             <div class="project-tags">
@@ -311,14 +339,17 @@
                                 <span class="project-tag">User Research</span>
                                 <span class="project-tag">Prototyping</span>
                             </div>
-                            <h3 class="project-title">Helping Commuters Find Quality Companions</h3>
+                            <h3 class="project-title"><a
+                                    href="https://chipped-carpet-f30.notion.site/Helping-Commuters-Find-Quality-Companions-1568912eb0b580058fc5d5b8029d5383?pvs=4"
+                                    target="_blank" rel="noreferrer noopener" class="stealth-link">Helping Commuters
+                                    Find Quality Companions</a></h3>
                             <p class="project-description">A Complete UI/UX Project that encompasses key UX processes
                                 such as User Research, Journey Mapping, Wireframing, Prototyping, Usability Testing and
                                 more.</p>
                             <div class="project-links">
                                 <a href="https://chipped-carpet-f30.notion.site/Helping-Commuters-Find-Quality-Companions-1568912eb0b580058fc5d5b8029d5383?pvs=4"
                                     target="_blank" rel="noreferrer noopener" class="project-link">
-                                    View Case Study <i class="fas fa-arrow-right"></i>
+                                    View Case Study <i class="fas fa-up-right-from-square"></i>
                                 </a>
                             </div>
                         </div>
@@ -327,8 +358,11 @@
                     <!-- PitchIn Event Organizing App -->
                     <div class="project-card" data-category="uiux">
                         <div class="project-img">
-                            <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                                alt="PitchIn Event Organizing App" loading="lazy">
+                            <a href="https://chipped-carpet-f30.notion.site/PitchIn-Collaborative-Event-Planning-App-Project-Documentation-1dc8912eb0b580309691f64ebca9538d?pvs=4"
+                                target="_blank" rel="noreferrer noopener" class="stealth-link">
+                                <img src="images/pitchin-thumbnail.png" alt="PitchIn Event Organizing App"
+                                    loading="lazy">
+                            </a>
                         </div>
                         <div class="project-content">
                             <div class="project-tags">
@@ -336,14 +370,17 @@
                                 <span class="project-tag">Usability Testing</span>
                                 <span class="project-tag">Iterative Design</span>
                             </div>
-                            <h3 class="project-title">PitchIn: Collaborative Event Planning</h3>
+                            <h3 class="project-title"><a
+                                    href="https://chipped-carpet-f30.notion.site/PitchIn-Collaborative-Event-Planning-App-Project-Documentation-1dc8912eb0b580309691f64ebca9538d?pvs=4"
+                                    target="_blank" rel="noreferrer noopener" class="stealth-link">PitchIn:
+                                    Collaborative Event Planning</a></h3>
                             <p class="project-description">An app designed to help friends and small communities
                                 organize events together, with features for task delegation, expense sharing, and
                                 collaborative decision-making.</p>
                             <div class="project-links">
                                 <a href="https://chipped-carpet-f30.notion.site/PitchIn-Collaborative-Event-Planning-App-Project-Documentation-1dc8912eb0b580309691f64ebca9538d?pvs=4"
                                     target="_blank" rel="noreferrer noopener" class="project-link">
-                                    View Details <i class="fas fa-arrow-right"></i>
+                                    View Details <i class="fas fa-up-right-from-square"></i>
                                 </a>
                             </div>
                         </div>
@@ -352,8 +389,10 @@
                     <!-- Information Architecture Project -->
                     <div class="project-card" data-category="uiux web">
                         <div class="project-img">
-                            <img src="https://zonghengtian.wordpress.com/wp-content/uploads/2025/01/ux-tweak.jpg"
-                                alt="Information Architecture Projects" loading="lazy">
+                            <a href="information-architecture-projects.html" class="stealth-link">
+                                <img src="https://zonghengtian.wordpress.com/wp-content/uploads/2025/01/ux-tweak.jpg"
+                                    alt="Information Architecture Projects" loading="lazy">
+                            </a>
                         </div>
                         <div class="project-content">
                             <div class="project-tags">
@@ -361,7 +400,8 @@
                                 <span class="project-tag">Tree Testing</span>
                                 <span class="project-tag">Card Sorting</span>
                             </div>
-                            <h3 class="project-title">Information Architecture Projects</h3>
+                            <h3 class="project-title"><a href="information-architecture-projects.html"
+                                    class="stealth-link">Information Architecture Projects</a></h3>
                             <p class="project-description">A series of projects analyzing website Information
                                 Architecture using UX Tweak for tree testing and card sorting, and Screaming Frog SEO
                                 Spider for content inventory.</p>
@@ -376,8 +416,11 @@
                     <!-- Healthy Fit Canadians -->
                     <div class="project-card" data-category="web">
                         <div class="project-img">
-                            <img src="https://zonghengtian.files.wordpress.com/2023/03/fitness-website-homepage.png"
-                                alt="Healthy Fit Canadians website" loading="lazy">
+                            <a href="https://healthyfitcanadians.wordpress.com/" target="_blank"
+                                rel="noreferrer noopener" class="stealth-link">
+                                <img src="https://zonghengtian.files.wordpress.com/2023/03/fitness-website-homepage.png"
+                                    alt="Healthy Fit Canadians website" loading="lazy">
+                            </a>
                         </div>
                         <div class="project-content">
                             <div class="project-tags">
@@ -385,13 +428,15 @@
                                 <span class="project-tag">Health</span>
                                 <span class="project-tag">Wordpress</span>
                             </div>
-                            <h3 class="project-title">Healthy Fit Canadians</h3>
+                            <h3 class="project-title"><a href="https://healthyfitcanadians.wordpress.com/"
+                                    target="_blank" rel="noreferrer noopener" class="stealth-link">Healthy Fit
+                                    Canadians</a></h3>
                             <p class="project-description">A website that helps fellow Canadians to adopt a healthier
                                 lifestyle with nutritional tips, workout guides, and wellness resources.</p>
                             <div class="project-links">
                                 <a href="https://healthyfitcanadians.wordpress.com/" target="_blank"
                                     rel="noreferrer noopener" class="project-link">
-                                    Visit Website <i class="fas fa-arrow-right"></i>
+                                    Visit Website <i class="fas fa-up-right-from-square"></i>
                                 </a>
                             </div>
                         </div>
@@ -400,8 +445,11 @@
                     <!-- Information Systems -->
                     <div class="project-card" data-category="web">
                         <div class="project-img">
-                            <img src="https://zonghengtian.files.wordpress.com/2023/03/is-website-homepage-1.png"
-                                alt="Information Systems website" loading="lazy">
+                            <a href="https://ethicalandsocialissuesininformationsystems.wordpress.com/" target="_blank"
+                                rel="noreferrer noopener" class="stealth-link">
+                                <img src="https://zonghengtian.files.wordpress.com/2023/03/is-website-homepage-1.png"
+                                    alt="Information Systems website" loading="lazy">
+                            </a>
                         </div>
                         <div class="project-content">
                             <div class="project-tags">
@@ -409,13 +457,16 @@
                                 <span class="project-tag">Education</span>
                                 <span class="project-tag">Wordpress</span>
                             </div>
-                            <h3 class="project-title">Information Systems</h3>
+                            <h3 class="project-title"><a
+                                    href="https://ethicalandsocialissuesininformationsystems.wordpress.com/"
+                                    target="_blank" rel="noreferrer noopener" class="stealth-link">Information
+                                    Systems</a></h3>
                             <p class="project-description">A website educating visitors on the importance of Information
                                 Systems in modern business and technology environments.</p>
                             <div class="project-links">
                                 <a href="https://ethicalandsocialissuesininformationsystems.wordpress.com/"
                                     target="_blank" rel="noreferrer noopener" class="project-link">
-                                    Visit Website <i class="fas fa-arrow-right"></i>
+                                    Visit Website <i class="fas fa-up-right-from-square"></i>
                                 </a>
                             </div>
                         </div>
@@ -424,8 +475,11 @@
                     <!-- Unity Christmas Project -->
                     <div class="project-card" data-category="game">
                         <div class="project-img">
-                            <img src="https://img.youtube.com/vi/sw1eJ1qFdUQ/maxresdefault.jpg"
-                                alt="Unity Christmas VR App" loading="lazy">
+                            <a href="#" class="stealth-link video-trigger"
+                                data-video-src="https://www.youtube.com/embed/sw1eJ1qFdUQ?autoplay=0">
+                                <img src="https://img.youtube.com/vi/sw1eJ1qFdUQ/maxresdefault.jpg"
+                                    alt="Unity Christmas VR App" loading="lazy">
+                            </a>
                         </div>
                         <div class="project-content">
                             <div class="project-tags">
@@ -433,7 +487,9 @@
                                 <span class="project-tag">VR</span>
                                 <span class="project-tag">3D Design</span>
                             </div>
-                            <h3 class="project-title">Unity Christmas VR App</h3>
+                            <h3 class="project-title"><a href="#" class="stealth-link video-trigger"
+                                    data-video-src="https://www.youtube.com/embed/sw1eJ1qFdUQ?autoplay=0">Unity
+                                    Christmas VR App</a></h3>
                             <p class="project-description">An interactive VR application built in Unity with a festive
                                 Christmas theme, showcasing my skills in 3D environment development and VR interaction
                                 design.</p>
@@ -449,8 +505,11 @@
                     <!-- CycleCanton Marketing Video -->
                     <div class="project-card" data-category="web">
                         <div class="project-img">
-                            <img src="https://img.youtube.com/vi/UmOCOsrHrJQ/maxresdefault.jpg"
-                                alt="CycleCanton Marketing Video" loading="lazy">
+                            <a href="#" class="stealth-link video-trigger"
+                                data-video-src="https://www.youtube.com/embed/UmOCOsrHrJQ?autoplay=0">
+                                <img src="https://img.youtube.com/vi/UmOCOsrHrJQ/maxresdefault.jpg"
+                                    alt="CycleCanton Marketing Video" loading="lazy">
+                            </a>
                         </div>
                         <div class="project-content">
                             <div class="project-tags">
@@ -458,7 +517,9 @@
                                 <span class="project-tag">Video</span>
                                 <span class="project-tag">Promotion</span>
                             </div>
-                            <h3 class="project-title">CycleCanton Marketing Video</h3>
+                            <h3 class="project-title"><a href="#" class="stealth-link video-trigger"
+                                    data-video-src="https://www.youtube.com/embed/UmOCOsrHrJQ?autoplay=0">CycleCanton
+                                    Marketing Video</a></h3>
                             <p class="project-description">A promotional video I created for CycleCanton, showcasing my
                                 video production and marketing design skills.</p>
                             <div class="project-links">
@@ -517,8 +578,10 @@
                     <!-- SLASHER Board Game -->
                     <div class="project-card" data-category="game">
                         <div class="project-img">
-                            <img src="https://zonghengtian.files.wordpress.com/2023/03/img_2810.jpeg"
-                                alt="SLASHER Board Game" loading="lazy">
+                            <a href="slasher-board-game.html" class="stealth-link">
+                                <img src="https://zonghengtian.files.wordpress.com/2023/03/img_2810.jpeg"
+                                    alt="SLASHER Board Game" loading="lazy">
+                            </a>
                         </div>
                         <div class="project-content">
                             <div class="project-tags">
@@ -526,7 +589,8 @@
                                 <span class="project-tag">Game Design</span>
                                 <span class="project-tag">Horror</span>
                             </div>
-                            <h3 class="project-title">SLASHER Board Game</h3>
+                            <h3 class="project-title"><a href="slasher-board-game.html" class="stealth-link">SLASHER
+                                    Board Game</a></h3>
                             <p class="project-description">A Slasher movie inspired multi-player board game that gives
                                 the players the opportunities to work together and survive against a common threat.</p>
                             <div class="project-links">
@@ -540,8 +604,11 @@
                     <!-- House Adventure -->
                     <div class="project-card" data-category="game">
                         <div class="project-img">
-                            <img src="https://zonghengtian.files.wordpress.com/2023/03/screenshot-2023-03-14-at-15.51.14.png"
-                                alt="House Adventure" loading="lazy">
+                            <a href="https://titanicmt.itch.io/house-adventure" target="_blank"
+                                rel="noreferrer noopener" class="stealth-link">
+                                <img src="https://zonghengtian.files.wordpress.com/2023/03/screenshot-2023-03-14-at-15.51.14.png"
+                                    alt="House Adventure" loading="lazy">
+                            </a>
                         </div>
                         <div class="project-content">
                             <div class="project-tags">
@@ -549,7 +616,9 @@
                                 <span class="project-tag">Interactive Fiction</span>
                                 <span class="project-tag">Combat System</span>
                             </div>
-                            <h3 class="project-title">House Adventure (Interactive Story)</h3>
+                            <h3 class="project-title"><a href="https://titanicmt.itch.io/house-adventure"
+                                    target="_blank" rel="noreferrer noopener" class="stealth-link">House Adventure
+                                    (Interactive Story)</a></h3>
                             <p class="project-description">An interactive story that has a fully functional combat
                                 system as well as a basic inventory system, offering an immersive
                                 choose-your-own-adventure experience.</p>

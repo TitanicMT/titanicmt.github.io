@@ -366,6 +366,35 @@ a:focus-visible {
   width: 100%;
 }
 
+/* Stealth Link Styles for clickable cards */
+.stealth-link {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition);
+  display: block;
+}
+
+.stealth-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Ensure images inside links behave correctly */
+.project-img .stealth-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Make titles change color on hover when they are links */
+.project-title .stealth-link {
+  color: inherit;
+}
+
+.project-title:hover .stealth-link {
+  color: var(--primary);
+}
+
 /* Video Embed */
 .video-container {
   position: relative;
@@ -1002,28 +1031,13 @@ footer p {
 .project-card:hover,
 .project-card:focus-within {
   transform: translateY(-7px) scale(1.02);
-  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1),
-    0 10px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 0 35px rgba(220, 38, 38, 0.3);
   z-index: 5;
   /* Higher than base, but lower than navigation */
   border-color: transparent;
 }
 
-.project-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: var(--primary);
-  opacity: 0;
-  transition: opacity 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-}
 
-.project-card:hover::before {
-  opacity: 1;
-}
 
 .project-card-img {
   width: 100%;
@@ -1129,7 +1143,7 @@ footer p {
 
 .highlight-card:hover {
   transform: translateY(-8px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 0 35px rgba(220, 38, 38, 0.3);
   z-index: 2;
   border-color: transparent;
 }
@@ -1139,21 +1153,7 @@ footer p {
   transform: translateY(-5px);
 }
 
-.highlight-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: var(--primary);
-  opacity: 0;
-  transition: opacity 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-}
 
-.highlight-card:hover::before {
-  opacity: 1;
-}
 
 .highlight-card h3 {
   font-size: 1.5rem;
@@ -1401,6 +1401,13 @@ body.dark-theme .theme-toggle i.fa-sun {
 body.dark-theme p {
   color: #d1d5db;
   /* Lighter paragraph text for better contrast */
+}
+
+body.dark-theme .project-card:hover,
+body.dark-theme .project-card:focus-within,
+body.dark-theme .highlight-card:hover,
+body.dark-theme .highlight-card:focus-within {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 35px rgba(220, 38, 38, 0.45);
 }
 
 body.dark-theme .project-card p,
