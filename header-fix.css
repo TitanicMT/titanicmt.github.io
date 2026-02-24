@@ -31,9 +31,8 @@
 .project-card:focus-within,
 .highlight-card:hover,
 .highlight-card:focus-within {
-  transform: translateY(-7px) !important;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 0 35px rgba(220, 38, 38, 0.3) !important;
-  border-color: transparent !important;
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-lg), 0 0 15px rgba(220, 38, 38, 0.15) !important;
 }
 
 /* Ensure dark mode has proper box-shadow */
@@ -41,7 +40,7 @@ body.dark-theme .project-card:hover,
 body.dark-theme .project-card:focus-within,
 body.dark-theme .highlight-card:hover,
 body.dark-theme .highlight-card:focus-within {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 35px rgba(220, 38, 38, 0.45) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 15px rgba(220, 38, 38, 0.3) !important;
 }
 
 /* Create an alternative hover effect with border and glow instead of transform */
