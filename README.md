@@ -44,7 +44,7 @@ I am Marcus (Zongheng) Tian, a UI/UX Designer with a passion for game developmen
 
 Feel free to explore my projects and reach out if you have any questions or opportunities for collaboration:
 
-- Email: zongheng.tian@mail.utoronto.ca
+- Email: zongheng1999@gmail.com
 - GitHub: [TitanicMT](https://github.com/TitanicMT)
 - Portfolio: [https://titanicmt.github.io/](https://titanicmt.github.io/)
  
