@@ -6,7 +6,7 @@
 <title>Draft C — Soft Structuralism · Marcus Tian</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Familjen+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════════════════════════════
    TOKEN LAYER — swap this block, keep every structure below.
@@ -38,7 +38,7 @@
 
   /* type */
   --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
-  --font-ui:      'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-ui:      'Familjen Grotesk', ui-sans-serif, system-ui, sans-serif;
 
   /* rhythm */
   --shell-pad: 8px;
@@ -88,10 +88,9 @@ a { color: inherit; text-decoration: none; }
 
 /* ── hero ── */
 .hero { padding-top: clamp(9rem, 21vh, 13.5rem); padding-bottom: calc(var(--section-y) * 0.6); text-align: center; }
-.eyebrow { display: inline-flex; align-items: center; gap: 0.55rem; font-size: 0.62rem; font-weight: 600;
-  letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-soft);
-  background: var(--surface); border-radius: 999px; padding: 0.45rem 0.95rem; box-shadow: var(--lift-1); }
-.eyebrow b { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+/* plain standfirst — the pill-and-dot badge is a saturated tell */
+.eyebrow { display: block; font-size: 0.78rem; font-weight: 500; color: var(--text-soft);
+  letter-spacing: 0.01em; }
 h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(3rem, 9.5vw, 8rem);
   line-height: 0.88; letter-spacing: -0.055em; margin: 2rem auto 0; max-width: 13ch; }
 h1 mark { background: none; color: var(--accent); }
@@ -163,12 +162,11 @@ h2 mark { background: none; color: var(--accent); }
 .idx { font-family: var(--font-display); font-weight: 800; font-size: 2.4rem; color: var(--text-faint);
   letter-spacing: -0.05em; line-height: 1; }
 
-/* ── marquee strip ── */
-.strip { background: var(--ink); color: var(--bg); padding-block: 1.15rem; overflow: hidden; white-space: nowrap; }
-.strip__row { display: inline-flex; gap: 3rem; animation: slide 32s linear infinite; will-change: transform; }
-.strip span { font-family: var(--font-display); font-weight: 500; font-size: 0.92rem; letter-spacing: -0.02em; opacity: 0.75; }
+/* ── capability band: static, readable, no infinite scroll ── */
+.strip { background: var(--ink); color: var(--bg); padding-block: 2.4rem; }
+.strip__row { display: flex; flex-wrap: wrap; gap: 0.6rem 2.2rem; justify-content: center; }
+.strip span { font-family: var(--font-display); font-weight: 500; font-size: 0.92rem; letter-spacing: -0.02em; opacity: 0.78; }
 .strip b { color: var(--accent-2); }
-@keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* ── about ── */
 .about { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(2rem,6vw,5rem); align-items: center; }
@@ -243,7 +241,7 @@ footer { padding-block: 2.2rem; border-top: 1px solid var(--hairline); }
 
 <header class="hero wrap">
   <div class="rise">
-    <span class="eyebrow"><b></b> Toronto · Available for 2026</span>
+    <span class="eyebrow">Toronto · Available for 2026</span>
     <h1>Designs it. Then <mark>builds it.</mark></h1>
     <p class="hero__sub">I'm Marcus — a UI/UX designer who writes the front-end too. Research, information architecture and interface craft, carried through to code that actually ships.</p>
     <div class="hero__row">
@@ -263,16 +261,15 @@ footer { padding-block: 2.2rem; border-top: 1px solid var(--hairline); }
 
 <div class="strip">
   <div class="strip__row">
-    <span>Information architecture <b>◆</b></span><span>UX research <b>◆</b></span><span>Interface design <b>◆</b></span>
-    <span>Design systems <b>◆</b></span><span>Front-end <b>◆</b></span><span>Game design <b>◆</b></span>
-    <span>Information architecture <b>◆</b></span><span>UX research <b>◆</b></span><span>Interface design <b>◆</b></span>
-    <span>Design systems <b>◆</b></span><span>Front-end <b>◆</b></span><span>Game design <b>◆</b></span>
+    <span>Information architecture</span><span><b>◆</b></span><span>UX research</span><span><b>◆</b></span>
+    <span>Interface design</span><span><b>◆</b></span><span>Design systems</span><span><b>◆</b></span>
+    <span>Front-end</span><span><b>◆</b></span><span>Game design</span>
   </div>
 </div>
 
 <section class="sec wrap" id="work">
   <div class="sec__head rise">
-    <span class="sec__note">01 — Selected work</span>
+    <span class="sec__note">Selected work</span>
     <h2>Six projects, taken <mark>start to ship.</mark></h2>
   </div>
 
@@ -282,7 +279,7 @@ footer { padding-block: 2.2rem; border-top: 1px solid var(--hairline); }
         <div class="card__media"><img src="/img/mtdex_items_1771892103885.png" alt="MTDex items" loading="lazy"></div>
         <div class="card__body">
           <div class="tags"><span class="tag">Product design</span><span class="tag">Front-end</span></div>
-          <h3>MTDex — a premium Pokédex experience</h3>
+          <h3>MTDex: a premium Pokédex experience</h3>
           <p>A reference app rebuilt around speed and hierarchy, with a custom type scale and motion system carried from Figma into shipped code.</p>
           <div class="card__foot"><span class="card__go">Read case study</span><span class="card__arrow">↗</span></div>
         </div>
@@ -294,7 +291,7 @@ footer { padding-block: 2.2rem; border-top: 1px solid var(--hairline); }
         <div class="card__media"><img src="/img/slasher/slasher-character-cards.jpg" alt="SLASHER cards" loading="lazy"></div>
         <div class="card__body">
           <div class="tags"><span class="tag">Game design</span><span class="tag">Physical</span></div>
-          <h3>SLASHER — asymmetric horror board game</h3>
+          <h3>SLASHER: asymmetric horror board game</h3>
           <p>Rules, balance, card system and print-ready art direction, refined across structured playtest rounds.</p>
           <div class="card__foot"><span class="card__go">Read case study</span><span class="card__arrow">↗</span></div>
         </div>
@@ -327,7 +324,7 @@ footer { padding-block: 2.2rem; border-top: 1px solid var(--hairline); }
       <div class="card__core"><div class="card__body">
         <span class="idx">05</span>
         <div class="tags"><span class="tag">Unity</span><span class="tag">VR</span></div>
-        <h3>Unity VR — spatial interaction study</h3>
+        <h3>Unity VR: spatial interaction study</h3>
         <p>Testing how flat interface conventions hold up once they gain a third dimension.</p>
         <div class="card__foot"><span class="card__go">Case study</span><span class="card__arrow">↗</span></div>
       </div></div>
@@ -339,10 +336,10 @@ footer { padding-block: 2.2rem; border-top: 1px solid var(--hairline); }
   <div class="about">
     <div class="about__portrait rise"><img src="/img/hero-profile.png" alt="Marcus Tian"></div>
     <div class="rise">
-      <span class="sec__note">02 — About</span>
-      <h2 style="margin:0.5rem 0 0; text-align:left">The handoff is where products <mark>lose their design.</mark></h2>
-      <p>I'm Marcus (Zongheng) Tian, a UI/UX designer in Toronto. I studied information systems at the University of Toronto — which is where I got interested in the structural half of design, how information gets organised before anyone decides what it looks like.</p>
-      <p>I build what I design. Not because every designer should code, but because the distance between a polished prototype and a shipped interface is exactly where intent disappears.</p>
+      <span class="sec__note">About</span>
+      <h2 style="margin:0.5rem 0 0; text-align:left">Two halves of <mark>one job.</mark></h2>
+      <p>I'm Marcus (Zongheng) Tian, a UI/UX designer in Toronto. I studied information systems at the University of Toronto, which is where I got interested in the structural half of design: how information gets organised before anyone decides what it looks like.</p>
+      <p>I build what I design. Not because every designer should code, but because I keep watching good decisions get lost between the prototype and the production build.</p>
       <div class="skills">
         <span class="tag">Information architecture</span><span class="tag">UX research</span><span class="tag">Interface design</span>
         <span class="tag">Design systems</span><span class="tag">HTML / CSS / JS</span><span class="tag">Unity</span><span class="tag">Figma</span>
@@ -353,7 +350,7 @@ footer { padding-block: 2.2rem; border-top: 1px solid var(--hairline); }
 
 <section class="sec contact wrap" id="contact">
   <div class="rise">
-    <span class="eyebrow"><b></b> Open to opportunities</span>
+    <span class="eyebrow">Open to opportunities</span>
     <h2>Something that needs <mark>designing and building?</mark></h2>
     <a href="mailto:zongheng1999@gmail.com" class="btn btn--solid">zongheng1999@gmail.com <i>↗</i></a>
   </div>

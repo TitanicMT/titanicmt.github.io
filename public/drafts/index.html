@@ -4,64 +4,78 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Landing page drafts · Marcus Tian</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Libre+Franklin:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root { --bg:#0d0d10; --card:#16161b; --line:rgba(255,255,255,.1); --tx:rgba(255,255,255,.92);
-          --soft:rgba(255,255,255,.55); --ease:cubic-bezier(.32,.72,0,1); }
+  :root { --bg:#f7f6f3; --surface:#fbfbfa; --line:#e3e1dc; --tx:#1c1b19;
+          --soft:#6b6862; --faint:#96938c; --ease:cubic-bezier(.16,1,.3,1); }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--tx);font-family:'Plus Jakarta Sans',system-ui,sans-serif;
-       padding:clamp(2rem,7vw,5.5rem);line-height:1.6}
-  h1{font-size:clamp(1.9rem,4.5vw,2.9rem);font-weight:800;letter-spacing:-.045em;line-height:1.05}
-  .lede{color:var(--soft);margin-top:1rem;max-width:56ch}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.1rem;margin-top:3rem}
-  a.card{display:block;padding:7px;background:rgba(255,255,255,.03);border:1px solid var(--line);
-         border-radius:1.6rem;text-decoration:none;color:inherit;
-         transition:transform .7s var(--ease),border-color .7s var(--ease)}
-  a.card:hover{transform:translateY(-5px);border-color:rgba(255,255,255,.22)}
-  .core{background:var(--card);border-radius:calc(1.6rem - 7px);padding:1.5rem 1.45rem 1.6rem;height:100%;
-        box-shadow:inset 0 1px 1px rgba(255,255,255,.09)}
-  .sw{display:flex;gap:.35rem;margin-bottom:1.1rem}
-  .sw i{width:1.5rem;height:1.5rem;border-radius:50%;display:block}
-  h2{font-size:1.12rem;font-weight:600;letter-spacing:-.02em}
-  .meta{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-top:.4rem}
-  p{font-size:.87rem;color:var(--soft);margin-top:.8rem}
-  .go{margin-top:1.2rem;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+  body{background:var(--bg);color:var(--tx);font-family:'Libre Franklin',system-ui,sans-serif;
+       padding:clamp(2rem,7vw,5rem);line-height:1.6}
+  h1{font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:clamp(1.9rem,4.5vw,2.9rem);
+     letter-spacing:-.02em;line-height:1.1}
+  .lede{color:var(--soft);margin-top:.9rem;max-width:60ch}
+  .note{margin-top:1.5rem;padding:.9rem 1.1rem;background:var(--surface);border:1px solid var(--line);
+        border-radius:6px;font-size:.84rem;color:var(--soft);max-width:60ch}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-top:2.5rem}
+  a.card{display:block;padding:1.4rem 1.35rem 1.5rem;background:var(--surface);border:1px solid var(--line);
+         border-radius:6px;text-decoration:none;color:inherit;
+         transition:border-color .4s var(--ease),background .4s var(--ease)}
+  a.card:hover{border-color:#b9b5ac;background:#fff}
+  .sw{display:flex;gap:.3rem;margin-bottom:1rem}
+  .sw i{width:1.35rem;height:1.35rem;border-radius:3px;display:block;border:1px solid rgba(0,0,0,.09)}
+  h2{font-family:'Newsreader',Georgia,serif;font-size:1.24rem;font-weight:500;letter-spacing:-.012em}
+  .meta{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-top:.35rem}
+  p.desc{font-size:.86rem;color:var(--soft);margin-top:.75rem}
+  .go{margin-top:1.1rem;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint)}
   a.card:hover .go{color:var(--tx)}
 </style>
 </head>
 <body>
   <h1>Landing page drafts</h1>
-  <p class="lede">Three directions for the redesign. Same content and positioning — “designer who builds”, six curated projects — but genuinely different visual systems and layout architecture. Each is built on a token block you can swap.</p>
+  <p class="lede">Five directions. Same content and positioning throughout — “designer who builds”, six curated projects — so the comparison is about the visual system, not the copy. Each carries its own token block you can swap.</p>
+  <p class="note">All five pass Impeccable's anti-pattern detector clean. Draft B (warm cream, italic serif) was cut: the detector flags that combination as the most saturated “premium AI” look in circulation.</p>
 
   <div class="grid">
     <a class="card" href="./draft-a-ethereal.html">
-      <div class="core">
-        <div class="sw"><i style="background:#050505;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)"></i><i style="background:#7c5cff"></i><i style="background:#14c8a0"></i></div>
-        <h2>A — Ethereal Glass</h2>
-        <div class="meta">Bento grid · Space Grotesk</div>
-        <p>OLED black, glowing mesh gradients, glass cards. Tech-forward and product-minded — leans on the “builds” half.</p>
-        <div class="go">Open draft ↗</div>
-      </div>
-    </a>
-
-    <a class="card" href="./draft-b-editorial.html">
-      <div class="core">
-        <div class="sw"><i style="background:#fdfbf7"></i><i style="background:#b4553a"></i><i style="background:#6b7d6a"></i></div>
-        <h2>B — Editorial Luxury</h2>
-        <div class="meta">Split layout · Instrument Serif</div>
-        <p>Warm paper, italic serif display, film grain. Gallery-like and considered — leans on the “designer” half.</p>
-        <div class="go">Open draft ↗</div>
-      </div>
+      <div class="sw"><i style="background:#050505"></i><i style="background:#7c5cff"></i><i style="background:#14c8a0"></i></div>
+      <h2>A · Ethereal Glass</h2>
+      <div class="meta">Bento grid · Archivo</div>
+      <p class="desc">Near-black, glass cards, asymmetric bento. Revised: the mesh-gradient halo is gone, replaced with a plain ground.</p>
+      <div class="go">Open draft</div>
     </a>
 
     <a class="card" href="./draft-c-structural.html">
-      <div class="core">
-        <div class="sw"><i style="background:#eeeef1"></i><i style="background:#2b4cf5"></i><i style="background:#c8f24f"></i></div>
-        <h2>C — Soft Structuralism</h2>
-        <div class="meta">Z-axis cascade · Bricolage Grotesque</div>
-        <p>Silver-white, heavy grotesk, tilted floating slabs with diffused shadows. Confident and tactile.</p>
-        <div class="go">Open draft ↗</div>
-      </div>
+      <div class="sw"><i style="background:#eeeef1"></i><i style="background:#2b4cf5"></i><i style="background:#c8f24f"></i></div>
+      <h2>C · Soft Structuralism</h2>
+      <div class="meta">Z-axis cascade · Bricolage Grotesque</div>
+      <p class="desc">Silver, heavy grotesk, tilted floating slabs. Revised: marquee removed, badges replaced with plain type.</p>
+      <div class="go">Open draft</div>
+    </a>
+
+    <a class="card" href="./draft-d-index.html">
+      <div class="sw"><i style="background:#f7f6f3"></i><i style="background:#1c1b19"></i><i style="background:#8a6a2f"></i></div>
+      <h2>D · Index</h2>
+      <div class="meta">Tabular index · Newsreader</div>
+      <p class="desc">Document-style. Work is a real index with year and discipline columns, not a card wall. Thumbnails reveal on hover.</p>
+      <div class="go">Open draft</div>
+    </a>
+
+    <a class="card" href="./draft-e-spec.html">
+      <div class="sw"><i style="background:#eceae5"></i><i style="background:#2f4a7a"></i><i style="background:#b23a2c"></i></div>
+      <h2>E · Spec Sheet</h2>
+      <div class="meta">Annotated specimens · Martian Mono</div>
+      <p class="desc">A technical drawing sheet: title block, numbered callouts, each project as an annotated specimen with a spec table.</p>
+      <div class="go">Open draft</div>
+    </a>
+
+    <a class="card" href="./draft-f-artifact.html">
+      <div class="sw"><i style="background:#0a0a0b"></i><i style="background:#f2f1ee"></i><i style="background:#e0873c"></i></div>
+      <h2>F · Artifact First</h2>
+      <div class="meta">Full-bleed sequence · Gabarito</div>
+      <p class="desc">The work fills the first viewport instead of a headline. Chrome is a thin bar; captions sit beside the images.</p>
+      <div class="go">Open draft</div>
     </a>
   </div>
 </body>
