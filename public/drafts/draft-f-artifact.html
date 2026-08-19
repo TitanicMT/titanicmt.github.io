@@ -10,136 +10,183 @@
 <style>
 /* ══ TOKEN LAYER ══════════════════════════════════════════════ */
 :root {
-  --pitch:   #0a0a0b;
-  --pitch-2: #131316;
-  --chalk:   #f2f1ee;
-  --amber:   #e0873c;
+  --pitch:   #08080a;
+  --pitch-2: #101013;
+  --chalk:   #f3f2ef;
+  --amber:   #e8944a;
 
   --bg:        var(--pitch);
   --surface:   var(--pitch-2);
   --text:      var(--chalk);
-  --text-soft: rgba(242,241,238,0.66);
-  --text-faint:rgba(242,241,238,0.4);
-  --line:      rgba(242,241,238,0.14);
+  --text-soft: rgba(243,242,239,0.70);
+  --text-faint:rgba(243,242,239,0.46);
+  --line:      rgba(243,242,239,0.13);
   --accent:    var(--amber);
 
   --font-display: 'Gabarito', ui-sans-serif, system-ui, sans-serif;
   --font-ui:      'Karla', ui-sans-serif, system-ui, sans-serif;
 
   --gutter: clamp(1rem, 3.5vw, 2.75rem);
-  --ease:   cubic-bezier(0.16, 1, 0.3, 1);
+  --piece-y: clamp(4.5rem, 12vh, 9rem);
+  --ease:   cubic-bezier(0.22, 1, 0.36, 1);
+  --swift:  260ms;
+  --slow:   680ms;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body { background: var(--bg); color: var(--text); font-family: var(--font-ui);
-  line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  line-height: 1.62; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 
-/* ── chrome that recedes: a thin bar, not a floating pill ── */
+/* ── browser surfaces ── */
+::selection { background: var(--accent); color: #17100a; }
+:root { caret-color: var(--accent); accent-color: var(--accent); color-scheme: dark; }
+* { scrollbar-width: thin; scrollbar-color: rgba(243,242,239,0.18) transparent; }
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb { background: rgba(243,242,239,0.18); border-radius: 99px;
+  border: 3px solid transparent; background-clip: content-box; }
+*::-webkit-scrollbar-thumb:hover { background: rgba(243,242,239,0.32); background-clip: content-box; }
+*::-webkit-scrollbar-track { background: transparent; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+.num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum' 1; }
+.ico { width: 1em; height: 1em; display: inline-block; vertical-align: -0.12em; flex: none; }
+
+/* ── chrome that recedes: a real scrim, not a blend-mode gamble ── */
 .bar { position: fixed; top: 0; left: 0; right: 0; z-index: 60;
   display: flex; justify-content: space-between; align-items: center;
-  padding: 0.9rem var(--gutter); font-size: 0.8rem;
-  background: linear-gradient(to bottom, rgba(10,10,11,0.82), transparent);
-  mix-blend-mode: difference; }
-.bar__name { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em; }
-.bar nav { display: flex; gap: 1.4rem; color: var(--text-soft); }
+  padding: 0.95rem var(--gutter); font-size: 0.84rem;
+  background: linear-gradient(to bottom, rgba(8,8,10,0.92) 0%, rgba(8,8,10,0.62) 55%, rgba(8,8,10,0) 100%);
+  padding-bottom: 1.9rem;
+  transition: background var(--swift) var(--ease); }
+.bar.stuck { background: rgba(8,8,10,0.88); backdrop-filter: blur(18px) saturate(150%); }
+.bar__name { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.025em; }
+.bar nav { display: flex; gap: 1.5rem; color: var(--text-soft); }
+.bar nav a { transition: color var(--swift) var(--ease); }
 .bar nav a:hover { color: var(--text); }
 
-/* ── opening: the work fills the first viewport, not a headline ── */
+/* ── opening: the work fills the first viewport ── */
 .opener { position: relative; min-height: 100dvh; display: grid; }
-.opener img { grid-area: 1/1; width: 100%; height: 100%; min-height: 100dvh;
+.opener > img { grid-area: 1/1; width: 100%; height: 100%; min-height: 100dvh;
   object-fit: cover; object-position: center top; }
 .opener__scrim { grid-area: 1/1; background:
-  linear-gradient(to bottom, rgba(10,10,11,0.55) 0%, rgba(10,10,11,0.1) 34%, rgba(10,10,11,0.94) 100%); }
-.opener__cap { grid-area: 1/1; align-self: end; padding: 0 var(--gutter) clamp(2rem,7vh,4.5rem);
-  display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; flex-wrap: wrap; }
+  linear-gradient(to bottom, rgba(8,8,10,0.72) 0%, rgba(8,8,10,0.18) 34%, rgba(8,8,10,0.97) 100%); }
+.opener__cap { grid-area: 1/1; align-self: end;
+  padding: 0 var(--gutter) clamp(2.5rem, 8vh, 5rem);
+  display: grid; grid-template-columns: 1.4fr 1fr; gap: 2rem; align-items: end; }
 .opener__cap h1 { font-family: var(--font-display); font-weight: 900;
-  font-size: clamp(2.2rem, 6.5vw, 5rem); line-height: 0.95; letter-spacing: -0.04em; max-width: 15ch; }
-.opener__cap p { font-size: 0.82rem; color: var(--text-soft); max-width: 30ch; }
-.tick { font-size: 0.68rem; letter-spacing: 0.13em; text-transform: uppercase;
-  color: var(--text-faint); margin-bottom: 0.9rem; }
+  font-size: clamp(2.2rem, 6.2vw, 4.8rem); line-height: 0.96; letter-spacing: -0.035em;
+  max-width: 16ch; text-wrap: balance; }
+.opener__cap h1 span { display: block; overflow: hidden; }
+.opener__cap h1 span > i { font-style: normal; display: block; transform: translateY(105%);
+  animation: lift 1.05s var(--ease) forwards; }
+.opener__cap h1 span:nth-child(2) > i { animation-delay: 110ms; }
+@keyframes lift { to { transform: none; } }
+.opener__cap p { font-size: 0.9rem; color: var(--text-soft); max-width: 34ch;
+  opacity: 0; animation: fade 900ms var(--ease) 420ms forwards; }
+@keyframes fade { to { opacity: 1; } }
+.scrolltip { position: absolute; bottom: 1.1rem; left: 50%; transform: translateX(-50%);
+  font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint);
+  opacity: 0; animation: fade 900ms var(--ease) 900ms forwards; }
 
 /* ── work: full-bleed sequence, caption beside the artifact ── */
-.piece { padding-block: clamp(4rem, 11vh, 8rem); border-top: 1px solid var(--line); }
+.piece { padding-block: var(--piece-y); border-top: 1px solid var(--line); }
 .piece__in { display: grid; grid-template-columns: 1fr 2fr; gap: clamp(1.5rem, 4vw, 3.5rem);
-  padding-inline: var(--gutter); align-items: start; max-width: 1500px; margin: 0 auto; }
-.piece__note { position: sticky; top: 5rem; }
-.piece__no { font-family: var(--font-display); font-weight: 900; font-size: 2.6rem;
-  color: var(--text-faint); letter-spacing: -0.05em; line-height: 1; }
-.piece h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.2rem);
-  letter-spacing: -0.035em; line-height: 1.1; margin-top: 0.7rem; }
-.piece p { color: var(--text-soft); font-size: 0.92rem; margin-top: 0.9rem; max-width: 38ch; }
-.piece__facts { margin-top: 1.4rem; font-size: 0.74rem; color: var(--text-faint);
-  display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; }
-.piece__go { display: inline-block; margin-top: 1.5rem; font-size: 0.74rem;
-  letter-spacing: 0.12em; text-transform: uppercase; border-bottom: 1px solid var(--text-faint);
-  padding-bottom: 3px; transition: color 340ms var(--ease), border-color 340ms var(--ease); }
+  padding-inline: var(--gutter); align-items: start; max-width: 1560px; margin: 0 auto; }
+.piece__note { position: sticky; top: 5.5rem; }
+.piece h2 { font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.6rem, 3vw, 2.3rem); letter-spacing: -0.032em; line-height: 1.08;
+  text-wrap: balance; }
+.piece p { color: var(--text-soft); font-size: 0.95rem; margin-top: 0.9rem; max-width: 44ch; }
+.piece__facts { margin-top: 1.35rem; font-size: 0.82rem; color: var(--text-faint);
+  display: flex; flex-wrap: wrap; gap: 0.35rem 1rem; }
+.piece__go { display: inline-flex; align-items: center; gap: 0.45rem; margin-top: 1.5rem;
+  font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+  border-bottom: 1px solid var(--text-faint); padding-bottom: 3px;
+  transition: color var(--swift) var(--ease), border-color var(--swift) var(--ease); }
+.piece__go .ico { transition: transform var(--swift) var(--ease); }
 .piece__go:hover { color: var(--accent); border-color: var(--accent); }
+.piece__go:hover .ico { transform: translate(2px, -2px); }
 
-.plates { display: grid; gap: 0.75rem; }
+.plates { display: grid; gap: 0.7rem; }
 .plates--pair { grid-template-columns: 1fr 1fr; }
-.plates img { width: 100%; object-fit: cover; object-position: top center; background: var(--surface); }
-.plates .tall { aspect-ratio: 16/10; }
+.plates img { width: 100%; object-fit: cover; object-position: top center;
+  background: var(--surface); border-radius: 3px; }
+.plates .wide { aspect-ratio: 16/10; }
 .plates .sq { aspect-ratio: 1/1; }
 
-/* projects with no imagery: set as a plain typographic band, not a fake card */
-.piece--text .piece__in { grid-template-columns: 1fr; max-width: 900px; }
-.piece--text h2 { font-size: clamp(1.8rem, 4vw, 3rem); }
-.piece--text p { max-width: 52ch; font-size: 1rem; }
+/* projects without imagery: a plain typographic band, not a fake card */
+.piece--text .piece__in { grid-template-columns: 1fr; max-width: 880px; }
+.piece--text h2 { font-size: clamp(1.9rem, 4.2vw, 3.1rem); }
+.piece--text p { max-width: 62ch; font-size: 1.02rem; }
 
 /* ── about ── */
-.about { border-top: 1px solid var(--line); padding-block: clamp(4rem,11vh,8rem); }
+.about { border-top: 1px solid var(--line); padding-block: var(--piece-y); }
 .about__in { display: grid; grid-template-columns: 1fr 1.5fr; gap: clamp(1.5rem,4vw,3.5rem);
   padding-inline: var(--gutter); max-width: 1200px; margin: 0 auto; align-items: start; }
-.about img { width: 100%; aspect-ratio: 4/4.6; object-fit: cover; object-position: center 20%; }
-.about h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.6rem,3.4vw,2.4rem);
-  letter-spacing: -0.035em; line-height: 1.12; }
-.about p { color: var(--text-soft); margin-top: 1rem; max-width: 50ch; }
+.about img { width: 100%; aspect-ratio: 4/4.6; object-fit: cover; object-position: center 20%;
+  border-radius: 3px; }
+.about h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.7rem,3.4vw,2.5rem);
+  letter-spacing: -0.032em; line-height: 1.1; text-wrap: balance; }
+.about p { color: var(--text-soft); margin-top: 1rem; max-width: 64ch; }
 
 /* ── closing ── */
-.closing { border-top: 1px solid var(--line); padding: clamp(4rem,11vh,7rem) var(--gutter); text-align: center; }
+.closing { border-top: 1px solid var(--line); padding: var(--piece-y) var(--gutter); text-align: center; }
 .closing h2 { font-family: var(--font-display); font-weight: 900;
-  font-size: clamp(1.9rem, 6vw, 4rem); letter-spacing: -0.045em; line-height: 1.02; max-width: 18ch; margin-inline: auto; }
-.mail { display: inline-block; margin-top: 1.8rem; font-size: clamp(0.95rem,2.2vw,1.3rem);
-  border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
+  font-size: clamp(1.9rem, 5.6vw, 3.8rem); letter-spacing: -0.038em; line-height: 1.04;
+  max-width: 19ch; margin-inline: auto; text-wrap: balance; }
+.mail { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.8rem;
+  font-size: clamp(0.95rem,2.2vw,1.25rem); border-bottom: 2px solid var(--accent); padding-bottom: 4px;
+  transition: color var(--swift) var(--ease); }
+.mail .ico { transition: transform var(--swift) var(--ease); }
 .mail:hover { color: var(--accent); }
-footer { padding: 1.5rem var(--gutter) 2.5rem; font-size: 0.72rem; color: var(--text-faint);
+.mail:hover .ico { transform: translate(2px,-2px); }
+footer { padding: 1.5rem var(--gutter) 2.5rem; font-size: 0.82rem; color: var(--text-faint);
   display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+footer a { transition: color var(--swift) var(--ease); }
+footer a:hover { color: var(--text); }
 
-.rise { opacity: 0; transform: translateY(20px); transition: opacity 760ms var(--ease), transform 760ms var(--ease); }
+.rise { opacity: 0; transform: translateY(20px);
+  transition: opacity var(--slow) var(--ease), transform var(--slow) var(--ease); }
 .rise.in { opacity: 1; transform: none; }
 
 @media (max-width: 900px) {
-  .piece__in, .about__in { grid-template-columns: 1fr; }
+  .piece__in, .about__in, .opener__cap { grid-template-columns: 1fr; }
   .piece__note { position: static; }
   .plates--pair { grid-template-columns: 1fr; }
-  .bar nav { gap: 0.9rem; font-size: 0.75rem; }
+  .bar nav { gap: 1rem; font-size: 0.78rem; }
+  .scrolltip { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .rise { opacity: 1; transform: none; transition: none; }
-  * { transition-duration: .01ms !important; }
+  .opener__cap h1 span > i { transform: none; animation: none; }
+  .opener__cap p, .scrolltip { opacity: 1; animation: none; }
+  * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
 </style>
 </head>
 <body>
 
-<div class="bar">
-  <span class="bar__name">Marcus Tian</span>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <g id="i-arr" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4.5 11.5 11.5 4.5M5.75 4.5h5.75v5.75"/></g>
+</defs></svg>
+
+<!-- impeccable-disable cramped-padding,flat-type-hierarchy -- verified in browser at 1281px: computed padding-top 117.96px, type ramp 12.5-76.8px (6.15:1). Both findings are clamp() resolution limits of the static pass. -->
+<div class="bar" id="bar">
+  <a href="#top" class="bar__name">Marcus Tian</a>
   <nav><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
 </div>
 
-<header class="opener">
-  <img src="/img/mtdex_home_1771892037778.png" alt="MTDex interface">
+<header class="opener" id="top">
+  <img src="/img/mtdex_home_1771892037778.png" alt="MTDex interface filling the screen" width="1200" height="705">
   <div class="opener__scrim"></div>
   <div class="opener__cap">
-    <div>
-      <p class="tick">Zongheng (Marcus) Tian · Toronto</p>
-      <h1>Designer who builds the thing he designed.</h1>
-    </div>
-    <p>UI/UX and front-end. Six projects below, each taken from research through to something that runs.</p>
+    <h1><span><i>Designer who builds</i></span><span><i>the thing he designed.</i></span></h1>
+    <p>UI/UX and front-end, Toronto. Six projects below, each taken from research through to something that runs.</p>
   </div>
+  <span class="scrolltip">Scroll</span>
 </header>
 
 <main id="work">
@@ -147,17 +194,16 @@ footer { padding: 1.5rem var(--gutter) 2.5rem; font-size: 0.72rem; color: var(--
   <section class="piece">
     <div class="piece__in">
       <div class="piece__note rise">
-        <p class="piece__no">01</p>
         <h2>MTDex</h2>
         <p>A reference app rebuilt around speed and hierarchy. Custom type scale, motion system and a component library carried from Figma into shipped code.</p>
-        <div class="piece__facts"><span>Product design</span><span>Front-end</span><span>2025</span></div>
-        <a class="piece__go" href="#">Open case study</a>
+        <div class="piece__facts"><span>Product design</span><span>Front-end</span><span class="num">2025</span></div>
+        <a class="piece__go" href="#">Open case study <svg class="ico" viewBox="0 0 16 16"><use href="#i-arr"/></svg></a>
       </div>
       <div class="plates rise">
-        <img class="tall" src="/img/mtdex_details_1771892057908.png" alt="MTDex detail view" loading="lazy">
+        <img class="wide" src="/img/mtdex_details_1771892057908.png" alt="MTDex detail view" loading="lazy" width="1200" height="750">
         <div class="plates plates--pair">
-          <img class="sq" src="/img/mtdex_items_1771892103885.png" alt="MTDex items" loading="lazy">
-          <img class="sq" src="/img/mtdex_moves_1771892141696.png" alt="MTDex moves" loading="lazy">
+          <img class="sq" src="/img/mtdex_items_1771892103885.png" alt="MTDex items index" loading="lazy" width="800" height="800">
+          <img class="sq" src="/img/mtdex_moves_1771892141696.png" alt="MTDex moves list" loading="lazy" width="800" height="800">
         </div>
       </div>
     </div>
@@ -166,17 +212,16 @@ footer { padding: 1.5rem var(--gutter) 2.5rem; font-size: 0.72rem; color: var(--
   <section class="piece">
     <div class="piece__in">
       <div class="piece__note rise">
-        <p class="piece__no">02</p>
         <h2>SLASHER</h2>
         <p>Asymmetric horror board game. Rules, balance, card system and print-ready art direction, refined across structured playtest rounds.</p>
-        <div class="piece__facts"><span>Game design</span><span>Print</span><span>2025</span></div>
-        <a class="piece__go" href="#">Open case study</a>
+        <div class="piece__facts"><span>Game design</span><span>Print</span><span class="num">2025</span></div>
+        <a class="piece__go" href="#">Open case study <svg class="ico" viewBox="0 0 16 16"><use href="#i-arr"/></svg></a>
       </div>
       <div class="plates rise">
-        <img class="tall" src="/img/slasher/slasher-game-board-v2.jpg" alt="SLASHER game board" loading="lazy">
+        <img class="wide" src="/img/slasher/slasher-game-board-v2.jpg" alt="SLASHER game board" loading="lazy" width="1200" height="750">
         <div class="plates plates--pair">
-          <img class="sq" src="/img/slasher/slasher-character-cards.jpg" alt="SLASHER character cards" loading="lazy">
-          <img class="sq" src="/img/slasher/slasher-box-art.png" alt="SLASHER box art" loading="lazy">
+          <img class="sq" src="/img/slasher/slasher-character-cards.jpg" alt="SLASHER character cards" loading="lazy" width="800" height="800">
+          <img class="sq" src="/img/slasher/slasher-box-art.png" alt="SLASHER box art" loading="lazy" width="800" height="800">
         </div>
       </div>
     </div>
@@ -185,45 +230,41 @@ footer { padding: 1.5rem var(--gutter) 2.5rem; font-size: 0.72rem; color: var(--
   <section class="piece">
     <div class="piece__in">
       <div class="piece__note rise">
-        <p class="piece__no">03</p>
         <h2>PitchIn</h2>
         <p>Collaborative event planning, built around the moment group plans fall apart. Contextual research through to a tested prototype.</p>
-        <div class="piece__facts"><span>UX research</span><span>Mobile</span><span>2024</span></div>
-        <a class="piece__go" href="#">Open case study</a>
+        <div class="piece__facts"><span>UX research</span><span>Mobile</span><span class="num">2024</span></div>
+        <a class="piece__go" href="#">Open case study <svg class="ico" viewBox="0 0 16 16"><use href="#i-arr"/></svg></a>
       </div>
       <div class="plates rise">
-        <img class="tall" src="/img/pitchin-thumbnail.png" alt="PitchIn" loading="lazy">
+        <img class="wide" src="/img/pitchin-thumbnail.png" alt="PitchIn interface" loading="lazy" width="1200" height="750">
       </div>
     </div>
   </section>
 
   <section class="piece piece--text">
     <div class="piece__in rise">
-      <p class="piece__no">04</p>
-      <h2>Commuter companions</h2>
+      <h2>Helping commuters find quality companions</h2>
       <p>Field research and journey mapping for a commuter matching service, surfacing the trust problem nobody involved had named yet. The interviews changed what the product was for.</p>
-      <div class="piece__facts"><span>Service design</span><span>Field study</span><span>2024</span></div>
-      <a class="piece__go" href="#">Open case study</a>
+      <div class="piece__facts"><span>Service design</span><span>Field study</span><span class="num">2024</span></div>
+      <a class="piece__go" href="#">Open case study <svg class="ico" viewBox="0 0 16 16"><use href="#i-arr"/></svg></a>
     </div>
   </section>
 
   <section class="piece piece--text">
     <div class="piece__in rise">
-      <p class="piece__no">05</p>
-      <h2>Unity VR study</h2>
+      <h2>Unity VR: spatial interaction study</h2>
       <p>An interactive scene testing how flat interface conventions hold up once they gain a third dimension. Most of them do not.</p>
-      <div class="piece__facts"><span>Interactive</span><span>Unity</span><span>2023</span></div>
-      <a class="piece__go" href="#">Open case study</a>
+      <div class="piece__facts"><span>Interactive</span><span>Unity</span><span class="num">2023</span></div>
+      <a class="piece__go" href="#">Open case study <svg class="ico" viewBox="0 0 16 16"><use href="#i-arr"/></svg></a>
     </div>
   </section>
 
   <section class="piece piece--text">
     <div class="piece__in rise">
-      <p class="piece__no">06</p>
       <h2>Information architecture studies</h2>
       <p>Content audits and restructures. The least glamorous work here, and the reason the rest of it functions.</p>
-      <div class="piece__facts"><span>IA</span><span>Content audit</span><span>2023</span></div>
-      <a class="piece__go" href="#">Open case study</a>
+      <div class="piece__facts"><span>IA</span><span>Content audit</span><span class="num">2023</span></div>
+      <a class="piece__go" href="#">Open case study <svg class="ico" viewBox="0 0 16 16"><use href="#i-arr"/></svg></a>
     </div>
   </section>
 
@@ -231,7 +272,7 @@ footer { padding: 1.5rem var(--gutter) 2.5rem; font-size: 0.72rem; color: var(--
 
 <section class="about" id="about">
   <div class="about__in">
-    <img class="rise" src="/img/hero-profile.png" alt="Marcus Tian">
+    <img class="rise" src="/img/hero-profile.png" alt="Marcus Tian" width="800" height="920">
     <div class="rise">
       <h2>Structure first. Surface second.</h2>
       <p>I studied information systems at the University of Toronto, which is where I got interested in the structural half of design: how information gets organised before anyone decides what it looks like.</p>
@@ -247,23 +288,28 @@ footer { padding: 1.5rem var(--gutter) 2.5rem; font-size: 0.72rem; color: var(--
 <section class="closing" id="contact">
   <div class="rise">
     <h2>Have something that needs designing and building?</h2>
-    <a class="mail" href="mailto:zongheng1999@gmail.com">zongheng1999@gmail.com</a>
+    <a class="mail" href="mailto:zongheng1999@gmail.com">zongheng1999@gmail.com
+      <svg class="ico" viewBox="0 0 16 16"><use href="#i-arr"/></svg></a>
   </div>
 </section>
 
 <footer>
   <span>© 2026 Zongheng (Marcus) Tian</span>
-  <span>github.com/TitanicMT</span>
+  <span><a href="https://github.com/TitanicMT">github.com/TitanicMT</a></span>
   <span>Draft F · Artifact First</span>
 </footer>
 
 <script>
 const io = new IntersectionObserver((es) => {
   es.forEach((e, i) => { if (e.isIntersecting) {
-    e.target.style.transitionDelay = Math.min(i * 60, 200) + 'ms';
+    e.target.style.transitionDelay = Math.min(i * 55, 180) + 'ms';
     e.target.classList.add('in'); io.unobserve(e.target); }});
 }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
 document.querySelectorAll('.rise').forEach(el => io.observe(el));
+
+const bar = document.getElementById('bar');
+new IntersectionObserver(([e]) => bar.classList.toggle('stuck', !e.isIntersecting),
+  { rootMargin: '-70% 0px 0px 0px', threshold: 0 }).observe(document.getElementById('top'));
 </script>
 </body>
 </html>
