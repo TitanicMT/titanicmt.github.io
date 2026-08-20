@@ -134,7 +134,7 @@ h2 { font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 500; letter-spacing: -0.0
 
 /* ── bento: single elevation, no nested shells ── */
 .bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; }
-.card { position: relative; display: flex; flex-direction: column; overflow: hidden;
+.card { position: relative; display: flex; flex-direction: column; overflow: hidden; color: inherit;
   background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--r);
   transition: border-color var(--slow) var(--ease), background var(--slow) var(--ease); }
 .card:hover { border-color: var(--hairline-hi); background: var(--surface-hi); }
@@ -269,7 +269,7 @@ footer { border-top: 1px solid var(--hairline); padding-block: 2rem; }
   </div>
 
   <div class="bento">
-    <article class="card card--wide rise">
+    <a href="#" class="card card--wide rise">
       <div class="card__media"><img src="/img/mtdex_home_1771892037778.png" alt="MTDex home screen showing the searchable index" loading="lazy" width="1200" height="705"></div>
       <div class="card__body">
         <div class="tags"><span class="tag">Product design</span><span class="tag">Front-end</span><span class="tag">Design system</span></div>
@@ -278,9 +278,9 @@ footer { border-top: 1px solid var(--hairline); padding-block: 2rem; }
         <div class="card__foot"><span class="card__go">Read case study</span>
           <svg class="ico card__arrow" viewBox="0 0 16 16"><use href="#i-arr"/></svg></div>
       </div>
-    </article>
+    </a>
 
-    <article class="card card--tall rise">
+    <a href="#" class="card card--tall rise">
       <div class="card__media"><img src="/img/slasher/slasher-box-art.png" alt="SLASHER board game box art" loading="lazy" width="900" height="675"></div>
       <div class="card__body">
         <div class="tags"><span class="tag">Game design</span><span class="tag">Print</span></div>
@@ -289,9 +289,9 @@ footer { border-top: 1px solid var(--hairline); padding-block: 2rem; }
         <div class="card__foot"><span class="card__go">Read case study</span>
           <svg class="ico card__arrow" viewBox="0 0 16 16"><use href="#i-arr"/></svg></div>
       </div>
-    </article>
+    </a>
 
-    <article class="card card--third rise">
+    <a href="#" class="card card--third rise">
       <div class="card__media" style="aspect-ratio:4/3"><img src="/img/pitchin-thumbnail.png" alt="PitchIn event planning interface" loading="lazy" width="800" height="600"></div>
       <div class="card__body">
         <div class="tags"><span class="tag">UX research</span><span class="tag">Mobile</span></div>
@@ -300,9 +300,9 @@ footer { border-top: 1px solid var(--hairline); padding-block: 2rem; }
         <div class="card__foot"><span class="card__go">Case study</span>
           <svg class="ico card__arrow" viewBox="0 0 16 16"><use href="#i-arr"/></svg></div>
       </div>
-    </article>
+    </a>
 
-    <article class="card card--third card--type rise">
+    <a href="#" class="card card--third card--type rise">
       <div class="card__body">
         <div class="tags"><span class="tag">UX research</span><span class="tag">Service design</span></div>
         <h3>Helping commuters find quality companions</h3>
@@ -310,9 +310,9 @@ footer { border-top: 1px solid var(--hairline); padding-block: 2rem; }
         <div class="card__foot"><span class="card__go">Case study</span>
           <svg class="ico card__arrow" viewBox="0 0 16 16"><use href="#i-arr"/></svg></div>
       </div>
-    </article>
+    </a>
 
-    <article class="card card--third card--type rise">
+    <a href="#" class="card card--third card--type rise">
       <div class="card__body">
         <div class="tags"><span class="tag">Unity</span><span class="tag">VR</span></div>
         <h3>Unity VR: spatial interaction study</h3>
@@ -320,7 +320,17 @@ footer { border-top: 1px solid var(--hairline); padding-block: 2rem; }
         <div class="card__foot"><span class="card__go">Case study</span>
           <svg class="ico card__arrow" viewBox="0 0 16 16"><use href="#i-arr"/></svg></div>
       </div>
-    </article>
+    </a>
+
+    <a href="#" class="card card--third card--type rise">
+      <div class="card__body">
+        <div class="tags"><span class="tag">Information architecture</span><span class="tag">Content audit</span></div>
+        <h3>Information architecture studies</h3>
+        <p>Content audits and restructures. The least glamorous work here, and the reason the rest of it functions.</p>
+        <div class="card__foot"><span class="card__go">Case study</span>
+          <svg class="ico card__arrow" viewBox="0 0 16 16"><use href="#i-arr"/></svg></div>
+      </div>
+    </a>
   </div>
 </section>
 
