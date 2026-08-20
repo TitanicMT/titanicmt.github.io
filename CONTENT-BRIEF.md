@@ -11,8 +11,10 @@ flag anything still missing. Priority order is top to bottom.
 
 ## 0. Resolved since the first draft
 
-- MTDex, SLASHER, Commuter companions and the IA studies now have full case
-  studies written from your own material, not placeholder copy.
+- MTDex, SLASHER, Commuter companions, PitchIn and the IA studies now have full
+  case studies written from your own material, not placeholder copy.
+- Both Notion exports are in. Commuter companions gained 12 images and PitchIn 7,
+  and PitchIn went from a placeholder to a full case study and is now live.
 - Confirmed: Faculty of Information, University of Toronto (INF2170, Dr. Vera
   Khovanskaya). SLASHER was CCT419. I had guessed "information systems" — corrected.
 - MTDex is dated 2026; the IA work is dated 2024. Every other year is still unknown
@@ -28,27 +30,23 @@ flag anything still missing. Priority order is top to bottom.
    | Maple Citizen | captured from the live site: hero, study interface, pricing |
    | MTDex | 4 screenshots (already had) |
    | SLASHER | 3 photos (already had) |
-   | PitchIn | 1 thumbnail — thin |
+   | PitchIn | thumbnail plus 6 from the Notion export — done |
    | Unity VR | project video still |
    | **Tripshepherd** | **none** — internship work, only you have it |
    | **CarbonTrace** | **none** — OneDrive folders are empty locally |
-   | **Commuter companions** | **none** — see note below |
+   | Commuter companions | 12 from the Notion export — done |
    | **IA studies** | **none** — the PDFs contain figures that could be exported |
 
-   **Commuter companions:** your Notion page has at least six large images (journey
-   maps, style tile, UI mock-ups). Scraping them was unreliable — one attempt found
-   six, later attempts found zero, because Notion unloads offscreen images. Export
-   them from Notion directly (`⋯` → Export → Markdown & CSV includes an images
-   folder) and drop them anywhere; that will take you a minute and me an hour.
 2. **CarbonTrace findings.** The INF2192 folders in OneDrive are empty locally, so the
    research did not sync. Method, findings and decisions only; no participant material.
-3. **Case study content** for PitchIn and Unity VR — both carry a visible
+3. **Case study content** for Unity VR — it still carries a visible
    "still to be written" note rather than invented detail.
 4. **Years** for SLASHER, Commuter companions, PitchIn and Unity VR. Not in the MI
-   archive, so these are undergrad and I have no evidence to date them.
-5. **A curation call.** Nine projects is a lot again. With Maple Citizen, Tripshepherd
-   and MTDex carrying the portfolio, PitchIn and Unity VR are now the weakest items
-   and I would cut both until they have content.
+   archive, so these are undergrad and I have no evidence to date them. One clue:
+   the PitchIn mock-ups use event dates of Jun 2025, which suggests but does not
+   prove a 2025 project — confirm it and I will set it.
+5. **A curation call.** With PitchIn now written from its documentation, Unity VR is
+   the only remaining item I would cut until it has content.
 
 ### What was deliberately excluded
 
@@ -75,8 +73,8 @@ This is a design portfolio: the imagery *is* the work. Here's what I actually ha
 |---|---|---|
 | MTDex | 4 screenshots | fine as-is |
 | SLASHER | 7 photos | fine as-is |
-| PitchIn | 1 thumbnail | hero + 3–5 more |
-| Commuter companions | **nothing** | hero + 3–5 |
+| PitchIn | 7 images | done |
+| Commuter companions | 13 images | done |
 | Unity VR | **nothing** | hero + 3–5 |
 | IA studies | **nothing** (PDFs only) | hero + 3–5 |
 | New project A | **nothing** | hero + 3–5 |

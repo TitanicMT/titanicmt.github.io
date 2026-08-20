@@ -99,7 +99,11 @@ const { Content } = await render(project);
     gap: clamp(2rem, 5vw, 4rem); align-items: start;
     padding-block: clamp(3.5rem, 8vh, 5.5rem); }
 
-  .prose { max-width: var(--measure); }
+  /* Text keeps a comfortable reading measure. Figures use the whole column:
+     a journey map or a row of six screens is unreadable squeezed into 68ch. */
+  .prose { max-width: none; }
+  .prose :global(h2), .prose :global(p), .prose :global(ul),
+  .prose :global(blockquote) { max-width: var(--measure); }
   .prose :global(h2) { font-size: clamp(1.4rem, 2.4vw, 1.85rem); font-weight: 500;
     letter-spacing: -0.026em; line-height: 1.18; margin-top: 3rem; margin-bottom: 0.9rem; }
   .prose :global(h2:first-child) { margin-top: 0; }
@@ -113,14 +117,14 @@ const { Content } = await render(project);
   .prose :global(blockquote) { border-left: 2px solid var(--accent); padding-left: 1.1rem;
     margin: 1.75rem 0; color: var(--text-soft); }
   .prose :global(blockquote p) { margin-bottom: 0.5rem; }
-  .prose :global(p:has(img)) { margin: 2.25rem 0 0.75rem; }
+  .prose :global(p:has(img)) { margin: 2.25rem 0 0.75rem; max-width: none; }
   /* Full frame, never cropped -- but a tall phone photo is capped to the viewport
      so it does not become a 1300px scroll. Wide screenshots are unaffected. */
   .prose :global(img) { max-width: 100%; max-height: 78vh; width: auto; height: auto;
     margin-inline: auto; border: 1px solid var(--hairline);
     border-radius: var(--r); background: var(--surface); }
   .prose :global(p:has(img) + p) { font-size: 0.88rem; color: var(--text-faint);
-    margin-bottom: 2.25rem; }
+    margin-bottom: 2.25rem; max-width: var(--measure); }
   .prose :global(a) { color: var(--accent); text-underline-offset: 0.22em;
     text-decoration: underline; text-decoration-thickness: 1px; }
 
