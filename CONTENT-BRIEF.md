@@ -21,9 +21,25 @@ flag anything still missing. Priority order is top to bottom.
 
 ### Still needed, in priority order
 
-1. **Imagery.** Now the single biggest gap. Six of nine projects have no images:
-   Maple Citizen, Tripshepherd, CarbonTrace, Commuter companions, IA studies, Unity VR.
-   Maple Citizen especially — it is the lead project and currently renders as text only.
+1. **Imagery.** Captured what was reachable; four projects still have none.
+
+   | Project | Imagery |
+   |---|---|
+   | Maple Citizen | captured from the live site: hero, study interface, pricing |
+   | MTDex | 4 screenshots (already had) |
+   | SLASHER | 3 photos (already had) |
+   | PitchIn | 1 thumbnail — thin |
+   | Unity VR | project video still |
+   | **Tripshepherd** | **none** — internship work, only you have it |
+   | **CarbonTrace** | **none** — OneDrive folders are empty locally |
+   | **Commuter companions** | **none** — see note below |
+   | **IA studies** | **none** — the PDFs contain figures that could be exported |
+
+   **Commuter companions:** your Notion page has at least six large images (journey
+   maps, style tile, UI mock-ups). Scraping them was unreliable — one attempt found
+   six, later attempts found zero, because Notion unloads offscreen images. Export
+   them from Notion directly (`⋯` → Export → Markdown & CSV includes an images
+   folder) and drop them anywhere; that will take you a minute and me an hour.
 2. **CarbonTrace findings.** The INF2192 folders in OneDrive are empty locally, so the
    research did not sync. Method, findings and decisions only; no participant material.
 3. **Case study content** for PitchIn and Unity VR — both carry a visible

@@ -4,6 +4,8 @@ summary: A study app for the Canadian citizenship test, designed, built, shipped
 year: 2026
 role: Solo founder — product, design system, front-end, backend, payments and marketing
 tags: ["Product design", "Design system", "Front-end", "Payments", "Solo shipped"]
+cover: ../../assets/projects/maplecitizen-hero.png
+coverAlt: Maple Citizen landing page — "Pass your citizenship test the first time" beside a live question card showing test readiness at 74%
 order: 1
 featured: true
 links:
@@ -58,12 +60,16 @@ That constraint shaped the product: it had to teach the material rather than dri
 leaked answers, which is what pushed the design toward the mistake book and adaptive
 review rather than a bank of practice questions.
 
+![The study interface, showing a question with immediate explanation and a running test-readiness score.](../../assets/projects/maplecitizen-study.png)
+
 ## The design system
 
 Maple Citizen has its own: a flag-red primary, Sora paired with Hanken Grotesk, and a
 voice rule I held everything to — **coach, not clerk**. Government-adjacent products
 default to bureaucratic tone, and that tone is exactly what makes studying feel like
 paperwork.
+
+![Pricing: a genuinely useful free tier alongside lifetime and monthly Pro.](../../assets/projects/maplecitizen-pricing.png)
 
 ## Stack
 
