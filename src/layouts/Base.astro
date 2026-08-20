@@ -7,6 +7,9 @@ import Footer from '../components/Footer.astro';
 interface Props { title: string; description: string; }
 const { title, description } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+// Baked in at build time. Lets anyone confirm which build is actually live,
+// which is otherwise invisible when a deploy ships identical content.
+const buildTime = new Date().toISOString();
 ---
 <!-- impeccable-disable flat-type-hierarchy,cramped-padding -- display sizes use clamp(), which the
      static pass cannot resolve. Verified in-browser at 1281px: type ramp 12.5-64px (5.13:1),
@@ -27,6 +30,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <link rel="icon" href="/icon-192.png" sizes="192x192" type="image/png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <meta name="theme-color" content="#08080a" />
+  <meta name="build-time" content={buildTime} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet"
