@@ -1,7 +1,36 @@
 # Content brief — portfolio rebuild
 
+**Status:** the site is built and running. Six projects are live with real case
+studies pulled from your PDFs, your old project pages and the Notion doc. What
+remains is listed below.
+
 Fill this in wherever you can. Partial is fine; I'll build around gaps and
 flag anything still missing. Priority order is top to bottom.
+
+---
+
+## 0. Resolved since the first draft
+
+- MTDex, SLASHER, Commuter companions and the IA studies now have full case
+  studies written from your own material, not placeholder copy.
+- Confirmed: Faculty of Information, University of Toronto (INF2170, Dr. Vera
+  Khovanskaya). SLASHER was CCT419. I had guessed "information systems" — corrected.
+- MTDex is dated 2026; the IA work is dated 2024. Every other year is still unknown
+  and is **deliberately omitted** rather than guessed — the Year field simply does
+  not render on those pages.
+
+### Still needed, in priority order
+
+1. **Years** for SLASHER, Commuter companions, PitchIn and Unity VR.
+2. **Case study content** for PitchIn and Unity VR — both currently carry a visible
+   "still to be written" note rather than invented detail.
+3. **Imagery** for Commuter companions, IA studies and Unity VR (none at all), and
+   more for PitchIn (one thumbnail).
+4. **The two 2026 projects.**
+
+> **Privacy note:** your student number (1005937113) appears on the cover pages of
+> all three IA PDFs, which are now served publicly at `/docs/`. Worth redacting
+> before this goes live.
 
 ---
 

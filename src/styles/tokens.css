@@ -1,0 +1,101 @@
+/* ═══════════════════════════════════════════════════════════════
+   TOKEN LAYER
+   Every visual decision lives here. Swapping the semantic block
+   changes the entire skin without touching a single component.
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  /* ── primitives: raw values, never referenced by components ── */
+  --void:      #08080a;
+  --void-lift: #101014;
+  --raise:     #16161b;
+  --white:     #ffffff;
+  --sea:       #4fd1b0;
+
+  /* ── semantic: the only tier components may use ── */
+  --bg:          var(--void);
+  --surface:     var(--void-lift);
+  --surface-hi:  var(--raise);
+  --hairline:    rgba(255,255,255,0.10);
+  --hairline-hi: rgba(255,255,255,0.20);
+  --text:        rgba(255,255,255,0.95);
+  --text-soft:   rgba(255,255,255,0.62);
+  --text-faint:  rgba(255,255,255,0.40);
+  --accent:      var(--sea);
+  --on-accent:   #05100d;
+
+  /* ── type ── */
+  --font-display: 'Archivo', ui-sans-serif, system-ui, sans-serif;
+  --font-data:    'Spline Sans Mono', ui-monospace, monospace;
+
+  /* ── shape & rhythm ── */
+  --r:         14px;
+  --r-sm:      10px;
+  --section-y: clamp(5.5rem, 13vh, 10rem);
+  --gutter:    clamp(1.25rem, 4vw, 3.5rem);
+  --measure:   68ch;
+
+  /* ── motion ── */
+  --ease:  cubic-bezier(0.22, 1, 0.36, 1);
+  --swift: 260ms;
+  --slow:  620ms;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  background: linear-gradient(to bottom, #0d0d11 0%, var(--bg) 42%) no-repeat fixed;
+  color: var(--text);
+  font-family: var(--font-display);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+/* ── browser surfaces: the parts we did not draw still carry the design ── */
+::selection { background: var(--accent); color: var(--on-accent); }
+:root { caret-color: var(--accent); accent-color: var(--accent); color-scheme: dark; }
+* { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.16) transparent; }
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.16); border-radius: 99px;
+  border: 3px solid transparent; background-clip: content-box; }
+*::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); background-clip: content-box; }
+*::-webkit-scrollbar-track { background: transparent; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum' 1; }
+
+/* ── shared primitives ── */
+.wrap { max-width: 1200px; margin-inline: auto; padding-inline: var(--gutter); }
+.ico { width: 1em; height: 1em; display: block; flex: none; }
+.skip { position: absolute; left: -9999px; top: 0; z-index: 100;
+  background: var(--white); color: #000; padding: 0.7rem 1.1rem; border-radius: var(--r-sm); }
+.skip:focus { left: var(--gutter); top: 0.75rem; }
+
+.tag { font-family: var(--font-data); font-size: 0.78rem; letter-spacing: 0.02em;
+  color: var(--text-soft); background: rgba(255,255,255,0.055);
+  border-radius: var(--r-sm); padding: 0.24rem 0.5rem; }
+.tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
+.btn { display: inline-flex; align-items: center; gap: 0.55rem;
+  padding: 0.78rem 1.25rem; border-radius: 99px; font-size: 0.92rem; font-weight: 500;
+  transition: transform var(--swift) var(--ease), background var(--swift) var(--ease),
+              border-color var(--swift) var(--ease), opacity var(--swift) var(--ease); }
+.btn--solid { background: var(--white); color: #000; }
+.btn--solid:hover { opacity: 0.88; }
+.btn--ghost { border: 1px solid var(--hairline); color: var(--text); }
+.btn--ghost:hover { border-color: var(--hairline-hi); background: rgba(255,255,255,0.04); }
+.btn:active { transform: scale(0.98); }
+.btn .ico { transition: transform var(--swift) var(--ease); }
+.btn--solid:hover .ico { transform: translate(2px, -2px); }
+.btn--down:hover .ico { transform: translateY(2px); }
+
+/* ── quiet reveal ── */
+.rise { opacity: 0; transform: translateY(18px);
+  transition: opacity var(--slow) var(--ease), transform var(--slow) var(--ease); }
+.rise.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rise { opacity: 1; transform: none; transition: none; }
+  * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

@@ -1,17 +1,166 @@
 ---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import portrait from '../assets/portrait.png';
 
+const projects = (await getCollection('projects', ({ data }) => !data.draft))
+  .sort((a, b) => a.data.order - b.data.order);
+
+/**
+ * Bento spans, derived rather than hand-placed so the grid stays whole
+ * however many projects exist. First two fill a row (7 + 5); the rest run
+ * in thirds, and the final row absorbs any remainder instead of leaving a gap.
+ */
+function spans(count: number) {
+  if (count === 0) return [];
+  if (count === 1) return ['full'];
+  if (count === 2) return ['wide', 'tall'];
+  const out: string[] = ['wide', 'tall'];
+  const rest = count - 2;
+  const full = Math.floor(rest / 3) * 3;
+  for (let i = 0; i < full; i++) out.push('third');
+  const left = rest - full;
+  if (left === 1) out.push('full');
+  if (left === 2) out.push('half', 'half');
+  return out;
+}
+const layout = spans(projects.length);
+
+const years = projects.map(p => p.data.year).filter(Boolean) as number[];
+const range = years.length ? `${Math.min(...years)}–${Math.max(...years)}` : '';
 ---
+<Base
+  title="Marcus Tian — UI/UX designer who builds"
+  description="UI/UX designer in Toronto working through research, information architecture and interface craft, then writing the front-end that ships it."
+>
+  <header class="hero wrap" id="top">
+    <h1>
+      <span><i>I design the interface,</i></span>
+      <span><i><em>then I build it.</em></i></span>
+    </h1>
+    <p class="hero__sub">
+      I work through research, information architecture and interface craft, then write
+      the front-end myself. Fewer translation layers, and fewer decisions quietly dropped
+      on the way to production.
+    </p>
+    <div class="hero__row">
+      <a href="#work" class="btn btn--solid btn--down">
+        See selected work <svg class="ico" viewBox="0 0 16 16"><use href="#i-down" /></svg>
+      </a>
+      <a href="mailto:zongheng1999@gmail.com" class="btn btn--ghost">zongheng1999@gmail.com</a>
+    </div>
+    <div class="hero__meta">
+      <div><b class="num">{projects.length}</b>Selected projects</div>
+      <div><b>Design + code</b>End to end</div>
+      <div><b>Toronto</b>Available 2026</div>
+    </div>
+  </header>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+  <section class="sec wrap" id="work">
+    <div class="sec__head rise">
+      <h2>Selected work, designed and shipped.</h2>
+      {range && <span class="sec__count num">{projects.length} projects · {range}</span>}
+    </div>
+    <div class="bento">
+      {projects.map((project, i) => (
+        <ProjectCard project={project} span={layout[i] as any} />
+      ))}
+    </div>
+  </section>
+
+  <section class="sec wrap" id="about">
+    <div class="about">
+      <div class="about__portrait rise">
+        <Image src={portrait} alt="Marcus Tian" widths={[400, 800]} sizes="(max-width: 980px) 320px, 40vw" />
+      </div>
+      <div class="rise">
+        <h2>Two halves of one job.</h2>
+        <p>
+          I'm Marcus (Zongheng) Tian, a UI/UX designer based in Toronto, studying at the
+          Faculty of Information at the University of Toronto. Most of my work starts in
+          research and information architecture: what the thing is, who needs it, and how
+          it should be ordered before anyone argues about colour.
+        </p>
+        <p>
+          I build what I design. Not because every designer should code, but because I keep
+          watching good decisions get lost between the prototype and the production build.
+          Owning both ends is the cheapest way I've found to stop that happening.
+        </p>
+        <div class="tags">
+          <span class="tag">Information architecture</span><span class="tag">UX research</span>
+          <span class="tag">Interface design</span><span class="tag">Design systems</span>
+          <span class="tag">React</span><span class="tag">HTML / CSS / JS</span>
+          <span class="tag">Unity</span><span class="tag">Figma</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact wrap" id="contact">
+    <div class="rise">
+      <h2>Have something that needs designing and building?</h2>
+      <a href="mailto:zongheng1999@gmail.com" class="btn btn--solid">
+        zongheng1999@gmail.com <svg class="ico" viewBox="0 0 16 16"><use href="#i-arr" /></svg>
+      </a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding-top: clamp(8rem, 20vh, 12.5rem); padding-bottom: var(--section-y); }
+  h1 { font-size: clamp(2.7rem, 7.6vw, 6rem); font-weight: 500; letter-spacing: -0.03em;
+    line-height: 0.98; max-width: 15ch; text-wrap: balance; }
+  h1 em { font-style: normal; color: var(--text-faint); }
+  h1 span { display: block; overflow: hidden; }
+  h1 span > i { font-style: normal; display: block; transform: translateY(105%);
+    animation: lift 1s var(--ease) forwards; }
+  h1 span:nth-child(2) > i { animation-delay: 110ms; }
+  @keyframes lift { to { transform: none; } }
+
+  .hero__sub { margin-top: 2.1rem; max-width: var(--measure);
+    font-size: clamp(1rem, 1.4vw, 1.14rem); color: var(--text-soft); line-height: 1.68;
+    opacity: 0; animation: fade 900ms var(--ease) 340ms forwards; }
+  @keyframes fade { to { opacity: 1; } }
+  .hero__row { margin-top: 2.6rem; display: flex; flex-wrap: wrap; gap: 0.7rem;
+    opacity: 0; animation: fade 900ms var(--ease) 460ms forwards; }
+  .hero__meta { margin-top: 4rem; display: flex; flex-wrap: wrap; gap: 2.75rem;
+    opacity: 0; animation: fade 900ms var(--ease) 580ms forwards; }
+  .hero__meta div { font-family: var(--font-data); font-size: 0.82rem;
+    color: var(--text-faint); letter-spacing: 0.03em; }
+  .hero__meta b { display: block; font-family: var(--font-display); font-weight: 500;
+    color: var(--text); font-size: 1.6rem; letter-spacing: -0.025em; margin-bottom: 0.25rem; }
+
+  .sec { padding-block: var(--section-y); }
+  .sec__head { display: flex; justify-content: space-between; align-items: flex-end;
+    gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap; }
+  h2 { font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 500; letter-spacing: -0.03em;
+    line-height: 1.05; max-width: 20ch; text-wrap: balance; }
+  .sec__count { font-family: var(--font-data); font-size: 0.84rem; color: var(--text-faint);
+    letter-spacing: 0.04em; }
+
+  .bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; }
+
+  .about { display: grid; grid-template-columns: 0.8fr 1.2fr;
+    gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+  .about__portrait { border: 1px solid var(--hairline); border-radius: var(--r); overflow: hidden; }
+  .about__portrait :global(img) { width: 100%; aspect-ratio: 4/4.5; object-fit: cover;
+    object-position: center 20%; }
+  .about p { color: var(--text-soft); font-size: 1rem; line-height: 1.78;
+    margin-top: 1.3rem; max-width: var(--measure); }
+  .about .tags { margin-top: 2.25rem; }
+
+  .contact { padding-block: 7rem; border-top: 1px solid var(--hairline); }
+  .contact h2 { max-width: 24ch; }
+  .contact .btn { margin-top: 2.25rem; }
+
+  @media (max-width: 980px) {
+    .about { grid-template-columns: 1fr; }
+    .about__portrait { max-width: 320px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    h1 span > i { transform: none; animation: none; }
+    .hero__sub, .hero__row, .hero__meta { opacity: 1; animation: none; }
+  }
+</style>

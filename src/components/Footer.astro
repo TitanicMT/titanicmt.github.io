@@ -1,0 +1,21 @@
+---
+const year = 2026;
+---
+<footer>
+  <div class="wrap foot">
+    <span>© {year} Zongheng (Marcus) Tian</span>
+    <span>
+      <a href="https://github.com/TitanicMT">GitHub</a> ·
+      <a href="mailto:zongheng1999@gmail.com">Email</a>
+    </span>
+    <span>Toronto, Canada</span>
+  </div>
+</footer>
+<style>
+  footer { border-top: 1px solid var(--hairline); padding-block: 2rem; }
+  .foot { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    font-family: var(--font-data); font-size: 0.8rem; color: var(--text-faint);
+    letter-spacing: 0.02em; }
+  .foot a { transition: color var(--swift) var(--ease); }
+  .foot a:hover { color: var(--text); }
+</style>

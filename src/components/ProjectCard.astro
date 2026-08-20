@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props { project: CollectionEntry<'projects'>; span: 'wide' | 'tall' | 'third' | 'half' | 'full'; }
+const { project, span } = Astro.props;
+const { title, summary, tags, cover, coverAlt } = project.data;
+---
+<a href={`/work/${project.id}/`} class={`card card--${span} rise`}>
+  {cover && (
+    <div class="card__media">
+      <Image src={cover} alt={coverAlt ?? ''} widths={[420, 760, 1200]}
+             sizes="(max-width: 980px) 100vw, 60vw" loading="lazy" />
+    </div>
+  )}
+  <div class="card__body">
+    <div class="tags">{tags.map(t => <span class="tag">{t}</span>)}</div>
+    <h3>{title}</h3>
+    <p>{summary}</p>
+    <div class="card__foot">
+      <span class="card__go">Read case study</span>
+      <svg class="ico card__arrow" viewBox="0 0 16 16"><use href="#i-arr" /></svg>
+    </div>
+  </div>
+</a>
+
+<style>
+  .card { position: relative; display: flex; flex-direction: column; overflow: hidden;
+    color: inherit; background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: var(--r);
+    transition: border-color var(--slow) var(--ease), background var(--slow) var(--ease); }
+  .card:hover { border-color: var(--hairline-hi); background: var(--surface-hi); }
+  .card--wide  { grid-column: span 7; }
+  .card--tall  { grid-column: span 5; }
+  .card--third { grid-column: span 4; }
+  .card--half  { grid-column: span 6; }
+  .card--full  { grid-column: span 12; }
+
+  .card__media { overflow: hidden; background: #0b0b0f; border-bottom: 1px solid var(--hairline); }
+  .card__media :global(img) { width: 100%; height: 100%; object-fit: cover;
+    object-position: top center; transition: transform 1.4s var(--ease); }
+  .card:hover .card__media :global(img) { transform: scale(1.03); }
+  .card--wide  .card__media { aspect-ratio: 16 / 9.4; }
+  .card--tall  .card__media { aspect-ratio: 4 / 3; }
+  .card--third .card__media { aspect-ratio: 4 / 3; }
+  .card--half  .card__media { aspect-ratio: 16 / 9.4; }
+  .card--full  .card__media { aspect-ratio: 21 / 8; }
+
+  .card__body { padding: 1.5rem 1.55rem 1.6rem; display: flex; flex-direction: column;
+    gap: 0.6rem; flex: 1; }
+  .card:not(:has(.card__media)) { justify-content: space-between; min-height: 244px; }
+  .card:not(:has(.card__media)) .card__body { padding-top: 1.7rem; }
+
+  h3 { font-size: 1.26rem; font-weight: 500; letter-spacing: -0.024em; line-height: 1.22; }
+  p { font-size: 0.91rem; color: var(--text-soft); line-height: 1.62; max-width: 52ch; }
+  .card__foot { margin-top: auto; padding-top: 1rem; display: flex; align-items: center;
+    justify-content: space-between; gap: 1rem; }
+  .card__go { font-size: 0.82rem; color: var(--text-faint);
+    transition: color var(--slow) var(--ease); }
+  .card:hover .card__go { color: var(--accent); }
+  .card__arrow { color: var(--text-faint); font-size: 1.05rem;
+    transition: transform var(--slow) var(--ease), color var(--slow) var(--ease); }
+  .card:hover .card__arrow { transform: translate(2px, -2px); color: var(--text); }
+
+  @media (max-width: 980px) {
+    .card--wide, .card--tall, .card--third, .card--half, .card--full { grid-column: span 12; }
+  }
+</style>

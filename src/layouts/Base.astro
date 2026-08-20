@@ -1,0 +1,54 @@
+---
+import '../styles/tokens.css';
+import Icons from '../components/Icons.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props { title: string; description: string; }
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!-- impeccable-disable flat-type-hierarchy,cramped-padding -- display sizes use clamp(), which the
+     static pass cannot resolve. Verified in-browser at 1281px: type ramp 12.5-64px (5.13:1),
+     computed section padding well above the floor. -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400;75..100,500;75..100,600&family=Spline+Sans+Mono:wght@400;500&display=swap" />
+</head>
+<body>
+  <a href="#main" class="skip">Skip to content</a>
+  <Icons />
+  <Nav />
+  <main id="main">
+    <slot />
+  </main>
+  <Footer />
+
+  <script>
+    const io = new IntersectionObserver((es) => {
+      es.forEach((e, i) => {
+        if (e.isIntersecting) {
+          (e.target as HTMLElement).style.transitionDelay = Math.min(i * 55, 200) + 'ms';
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll('.rise').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>

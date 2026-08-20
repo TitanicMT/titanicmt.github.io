@@ -1,0 +1,85 @@
+---
+const { home = false } = Astro.props;
+const base = home ? '/' : '/';
+---
+<nav class="nav" id="nav">
+  <a href="/" class="nav__mark">Marcus Tian<span> / designer who builds</span></a>
+  <div class="nav__links">
+    <a href={`${base}#work`}>Work</a>
+    <a href={`${base}#about`}>About</a>
+    <a href={`${base}#contact`}>Contact</a>
+  </div>
+  <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="sheet">
+    <span></span><span></span>
+  </button>
+  <a href={`${base}#contact`} class="nav__cta">Let's talk</a>
+</nav>
+
+<div class="sheet" id="sheet">
+  <a href={`${base}#work`}>Work</a>
+  <a href={`${base}#about`}>About</a>
+  <a href={`${base}#contact`}>Contact</a>
+  <a href="mailto:zongheng1999@gmail.com">Email</a>
+</div>
+
+<style>
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+    display: flex; align-items: center; gap: 1.5rem; padding: 0.95rem var(--gutter);
+    background: rgba(8,8,10,0.62); backdrop-filter: blur(18px) saturate(150%);
+    border-bottom: 1px solid transparent; transition: border-color var(--swift) var(--ease); }
+  .nav.stuck { border-bottom-color: var(--hairline); }
+  .nav__mark { font-weight: 600; letter-spacing: -0.02em; font-size: 0.92rem; }
+  .nav__mark span { color: var(--text-faint); font-weight: 400; }
+  .nav__links { display: flex; gap: 1.5rem; margin-left: auto; font-size: 0.85rem; }
+  .nav__links a { color: var(--text-soft); transition: color var(--swift) var(--ease); }
+  .nav__links a:hover { color: var(--text); }
+  .nav__cta { display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--white); color: #000; font-size: 0.82rem; font-weight: 500;
+    padding: 0.5rem 0.95rem; border-radius: 99px;
+    transition: transform var(--swift) var(--ease), opacity var(--swift) var(--ease); }
+  .nav__cta:hover { opacity: 0.88; }
+  .nav__cta:active { transform: scale(0.97); }
+  .nav__burger { display: none; }
+
+  @media (max-width: 720px) {
+    .nav__links, .nav__cta { display: none; }
+    .nav__burger { display: grid; place-items: center; margin-left: auto;
+      width: 2.3rem; height: 2.3rem; border-radius: var(--r-sm);
+      border: 1px solid var(--hairline); background: none; cursor: pointer; color: var(--text); }
+    .nav__burger span { display: block; width: 15px; height: 1.5px; background: currentColor;
+      transition: transform var(--swift) var(--ease); }
+    .nav__burger span:first-child { transform: translateY(-3px); }
+    .nav__burger span:last-child  { transform: translateY(3px); }
+    .nav__burger.open span:first-child { transform: translateY(1px) rotate(45deg); }
+    .nav__burger.open span:last-child  { transform: translateY(-0.5px) rotate(-45deg); }
+  }
+  .sheet { position: fixed; inset: 0; z-index: 55; background: rgba(8,8,10,0.94);
+    backdrop-filter: blur(22px); display: grid; place-content: center; gap: 0.4rem;
+    text-align: center; opacity: 0; pointer-events: none;
+    transition: opacity var(--swift) var(--ease); }
+  .sheet.open { opacity: 1; pointer-events: auto; }
+  .sheet a { font-size: 1.9rem; font-weight: 500; letter-spacing: -0.03em; padding: 0.4rem; }
+</style>
+
+<script>
+  const nav = document.getElementById('nav')!;
+  const sentinel = document.getElementById('top');
+  if (sentinel) {
+    new IntersectionObserver(([e]) => nav.classList.toggle('stuck', !e.isIntersecting),
+      { rootMargin: '-8px 0px 0px 0px', threshold: 1 }).observe(sentinel);
+  } else {
+    nav.classList.add('stuck');
+  }
+
+  const burger = document.getElementById('burger')!;
+  const sheet = document.getElementById('sheet')!;
+  const toggle = (open: boolean) => {
+    burger.classList.toggle('open', open);
+    sheet.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  };
+  burger.addEventListener('click', () => toggle(!sheet.classList.contains('open')));
+  sheet.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggle(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') toggle(false); });
+</script>
