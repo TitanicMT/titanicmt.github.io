@@ -1,9 +1,12 @@
 {
-  // Static assets served by the Worker. The Worker's NAME is deliberately not
-  // set here -- it is supplied by the deploy command in the Cloudflare
-  // dashboard (`npx wrangler deploy --name <worker>`), so the name lives in one
-  // place and cannot drift out of sync with the repo.
+  // Static-assets-only Worker. No script: Astro's build output in ./dist is
+  // served directly.
+  //
+  // "name" must match the existing Worker exactly. A different value here
+  // would deploy to a *different* Worker -- which is how a portfolio deploy
+  // could overwrite an unrelated live product.
   "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "portfolio",
   "compatibility_date": "2026-08-20",
   "assets": {
     "directory": "./dist",
