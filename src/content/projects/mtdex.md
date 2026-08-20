@@ -6,8 +6,8 @@ role: Product manager, UX designer and frontend developer — sole contributor
 tags: ["Product design", "Front-end", "Information architecture", "React & Vite"]
 cover: ../../assets/projects/mtdex-home.png
 coverAlt: MTDex home screen showing the searchable Pokémon index with type-coloured cards
-order: 1
-featured: true
+order: 2
+featured: false
 links:
   - label: "Try MTDex"
     href: "#"

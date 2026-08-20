@@ -3,7 +3,7 @@ title: Helping commuters find quality companions
 summary: A platform connecting public-transit commuters with each other, to make a long daily journey less lonely and safer than travelling alone.
 role: Competitor analysis, user research, journey mapping, UI sketches and style tile — on a team of five
 tags: ["UX research", "Service design", "Journey mapping", "Prototyping"]
-order: 3
+order: 5
 featured: false
 links:
   - label: "Full case study on Notion"

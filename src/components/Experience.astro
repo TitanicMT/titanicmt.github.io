@@ -1,0 +1,86 @@
+---
+const roles = [
+  {
+    org: 'ArcheSell',
+    title: 'Founding Product Designer',
+    when: '2026 — present',
+    note: 'Own the design system end to end: Figma through to coded components, design tokens and a documented Storybook of roughly 290 component stories.',
+  },
+  {
+    org: 'Tripshepherd',
+    title: 'Research & Product Design Intern',
+    when: 'Sep — Dec 2025',
+    note: 'Ran 10+ moderated usability sessions, an A/B test measuring SUS against business KPIs, and a redesigned event-creation flow. Presented to the CEO and CMO.',
+  },
+  {
+    org: 'Tencent',
+    title: 'Strategic Marketing Intern',
+    when: 'Mar — Jun 2021',
+    note: 'Mixed-methods research and brand-sentiment mapping, feeding a campaign that lifted global brand awareness by 30%.',
+  },
+];
+
+const study = [
+  {
+    org: 'University of Toronto, Faculty of Information',
+    title: 'Master of Information — UX Design',
+    when: '2024 — 2026',
+  },
+  {
+    org: 'University of Toronto Mississauga',
+    title: 'Honours BA, Digital Enterprise Management',
+    when: '2019 — 2023',
+  },
+];
+---
+<div class="xp">
+  <section>
+    <h3>Experience</h3>
+    <ol>
+      {roles.map((r) => (
+        <li>
+          <span class="when num">{r.when}</span>
+          <div>
+            <p class="role">{r.title}<span>, {r.org}</span></p>
+            <p class="note">{r.note}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section>
+    <h3>Study</h3>
+    <ol>
+      {study.map((s) => (
+        <li>
+          <span class="when num">{s.when}</span>
+          <div>
+            <p class="role">{s.title}</p>
+            <p class="note">{s.org}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+</div>
+
+<style>
+  .xp { display: grid; gap: 3.5rem; }
+  h3 { font-family: var(--font-data); font-size: 0.8rem; font-weight: 400;
+    color: var(--text-faint); letter-spacing: 0.03em; margin-bottom: 1.5rem;
+    padding-bottom: 0.9rem; border-bottom: 1px solid var(--hairline); }
+  ol { list-style: none; display: grid; gap: 1.75rem; }
+  li { display: grid; grid-template-columns: 10.5rem minmax(0, 1fr); gap: 1.5rem;
+    align-items: baseline; }
+  .when { font-family: var(--font-data); font-size: 0.82rem; color: var(--text-faint);
+    letter-spacing: 0.02em; }
+  .role { font-size: 1.06rem; font-weight: 500; letter-spacing: -0.018em; }
+  .role span { color: var(--text-faint); font-weight: 400; }
+  .note { margin-top: 0.45rem; font-size: 0.94rem; color: var(--text-soft);
+    line-height: 1.68; max-width: 58ch; }
+
+  @media (max-width: 700px) {
+    li { grid-template-columns: 1fr; gap: 0.4rem; }
+  }
+</style>

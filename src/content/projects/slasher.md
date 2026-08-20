@@ -5,7 +5,7 @@ role: Gameplay designer and user experience analyst, on a course team
 tags: ["Game design", "UX research", "Playtesting", "Print"]
 cover: ../../assets/projects/slasher-box-art.png
 coverAlt: SLASHER board game box art
-order: 2
+order: 4
 featured: false
 context: CCT419, a UX design board game course at the University of Toronto.
 ---

@@ -4,7 +4,7 @@ summary: Two content audits and IA redesigns — a marine rental company and a c
 year: 2024
 role: Sole author
 tags: ["Information architecture", "Content audit", "Tree testing", "Card sorting"]
-order: 4
+order: 7
 featured: false
 links:
   - label: "Content audit and IA recommendations (PDF)"

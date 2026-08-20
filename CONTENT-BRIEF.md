@@ -21,12 +21,29 @@ flag anything still missing. Priority order is top to bottom.
 
 ### Still needed, in priority order
 
-1. **Years** for SLASHER, Commuter companions, PitchIn and Unity VR.
-2. **Case study content** for PitchIn and Unity VR — both currently carry a visible
+1. **Imagery.** Now the single biggest gap. Six of nine projects have no images:
+   Maple Citizen, Tripshepherd, CarbonTrace, Commuter companions, IA studies, Unity VR.
+   Maple Citizen especially — it is the lead project and currently renders as text only.
+2. **CarbonTrace findings.** The INF2192 folders in OneDrive are empty locally, so the
+   research did not sync. Method, findings and decisions only; no participant material.
+3. **Case study content** for PitchIn and Unity VR — both carry a visible
    "still to be written" note rather than invented detail.
-3. **Imagery** for Commuter companions, IA studies and Unity VR (none at all), and
-   more for PitchIn (one thumbnail).
-4. **The two 2026 projects.**
+4. **Years** for SLASHER, Commuter companions, PitchIn and Unity VR. Not in the MI
+   archive, so these are undergrad and I have no evidence to date them.
+5. **A curation call.** Nine projects is a lot again. With Maple Citizen, Tripshepherd
+   and MTDex carrying the portfolio, PitchIn and Unity VR are now the weakest items
+   and I would cut both until they have content.
+
+### What was deliberately excluded
+
+From the personal archive, none of the following is on the site, and none should be:
+transcript and grades; the note about first-year math; the list of employers who did
+not hire you; the ghosted HK role; police as a fallback career; weight loss, PR status
+and relationship; ArcheSell product names, architecture, workflows, competitive research
+and internal governance; CarbonTrace participant recordings and transcripts.
+
+ArcheSell appears as a job title with a craft-level description of the design system
+work — no product names, no screenshots, no design breakdown, per your instruction.
 
 > **Privacy note:** your student number (1005937113) appears on the cover pages of
 > all three IA PDFs, which are now served publicly at `/docs/`. Worth redacting

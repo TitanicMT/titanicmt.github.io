@@ -5,7 +5,7 @@ role: UI/UX design, usability testing, iterative design
 tags: ["UI/UX", "Usability testing", "Iterative design"]
 cover: ../../assets/projects/pitchin.png
 coverAlt: PitchIn collaborative event planning interface
-order: 5
+order: 8
 featured: false
 links:
   - label: "Project documentation on Notion"

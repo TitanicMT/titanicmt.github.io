@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import Experience from '../components/Experience.astro';
 import portrait from '../assets/portrait.png';
 
 const projects = (await getCollection('projects', ({ data }) => !data.draft))
@@ -70,6 +71,13 @@ const range = years.length ? `${Math.min(...years)}–${Math.max(...years)}` : '
     </div>
   </section>
 
+  <section class="sec wrap" id="experience">
+    <div class="sec__head rise">
+      <h2>Where I've done it.</h2>
+    </div>
+    <div class="rise"><Experience /></div>
+  </section>
+
   <section class="sec wrap" id="about">
     <div class="about">
       <div class="about__portrait rise">
@@ -78,15 +86,17 @@ const range = years.length ? `${Math.min(...years)}–${Math.max(...years)}` : '
       <div class="rise">
         <h2>Two halves of one job.</h2>
         <p>
-          I'm Marcus (Zongheng) Tian, a UI/UX designer based in Toronto, studying at the
-          Faculty of Information at the University of Toronto. Most of my work starts in
-          research and information architecture: what the thing is, who needs it, and how
-          it should be ordered before anyone argues about colour.
+          I'm Marcus (Zongheng) Tian, a product designer in Toronto. I'm finishing a
+          Master of Information in UX Design at the University of Toronto, and I work as
+          the founding product designer at ArcheSell. Most of my work starts in research
+          and information architecture: what the thing is, who needs it, and how it should
+          be ordered before anyone argues about colour.
         </p>
         <p>
           I build what I design. Not because every designer should code, but because I keep
           watching good decisions get lost between the prototype and the production build.
-          Owning both ends is the cheapest way I've found to stop that happening.
+          Owning both ends is the cheapest way I've found to stop that happening — and it's
+          why Maple Citizen exists as a live product rather than a prototype.
         </p>
         <div class="tags">
           <span class="tag">Information architecture</span><span class="tag">UX research</span>
