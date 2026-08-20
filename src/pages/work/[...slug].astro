@@ -113,7 +113,10 @@ const { Content } = await render(project);
     margin: 1.75rem 0; color: var(--text-soft); }
   .prose :global(blockquote p) { margin-bottom: 0.5rem; }
   .prose :global(p:has(img)) { margin: 2.25rem 0 0.75rem; }
-  .prose :global(img) { width: 100%; border: 1px solid var(--hairline);
+  /* Full frame, never cropped -- but a tall phone photo is capped to the viewport
+     so it does not become a 1300px scroll. Wide screenshots are unaffected. */
+  .prose :global(img) { max-width: 100%; max-height: 78vh; width: auto; height: auto;
+    margin-inline: auto; border: 1px solid var(--hairline);
     border-radius: var(--r); background: var(--surface); }
   .prose :global(p:has(img) + p) { font-size: 0.88rem; color: var(--text-faint);
     margin-bottom: 2.25rem; }

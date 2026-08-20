@@ -23,6 +23,8 @@ together to evade the slasher, and collect artefacts to exorcise it. Each player
 a distinct role with unique abilities. Dice drive the slasher's movement and trigger
 room-based disasters, so no two sessions run the same.
 
+![The board mid-setup: the cutaway mansion, player tokens and dice, and the disasters reference card that resolves room events.](../../assets/projects/slasher-board-photo.png)
+
 **Two rounds of user evaluation.** The first playtest used a low-fidelity prototype
 hand-drawn on A4 sheets, with participants aged 21–22. It surfaced the real problem:
 players read the game as collaborative, but could not actually play it without a
