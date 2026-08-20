@@ -7,6 +7,7 @@ cover: ../../assets/projects/unity-vr.jpg
 coverAlt: Still from the Unity Christmas VR application
 order: 9
 featured: false
+draft: true
 ---
 
 ## The problem

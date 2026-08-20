@@ -6,6 +6,7 @@ role: UX research and design, on the capstone project team
 tags: ["UX research", "User interviews", "Usability testing", "Capstone"]
 order: 6
 featured: false
+draft: true
 context: INF2192 capstone, Faculty of Information, University of Toronto, partnered with Combogic (Taiwan).
 ---
 

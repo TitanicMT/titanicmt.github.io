@@ -7,6 +7,7 @@ cover: ../../assets/projects/pitchin.png
 coverAlt: PitchIn collaborative event planning interface
 order: 8
 featured: false
+draft: true
 links:
   - label: "Project documentation on Notion"
     href: "https://chipped-carpet-f30.notion.site/PitchIn-Collaborative-Event-Planning-App-Project-Documentation-1dc8912eb0b580309691f64ebca9538d"

@@ -49,8 +49,9 @@ const { Content } = await render(project);
           <ul>
             {links.map((l) => (
               <li>
-                <a href={l.href}>
+                <a href={l.href} target="_blank" rel="noopener noreferrer">
                   {l.label} <svg class="ico" viewBox="0 0 16 16"><use href="#i-arr" /></svg>
+                  <span class="sr">(opens in a new tab)</span>
                 </a>
               </li>
             ))}
@@ -131,6 +132,8 @@ const { Content } = await render(project);
   .links a { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.9rem;
     color: var(--text-soft); transition: color var(--swift) var(--ease); }
   .links a:hover { color: var(--accent); }
+  .sr { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
   .next { border-top: 1px solid var(--hairline); padding-block: 2.5rem 4rem; }
   .next a { display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap; }

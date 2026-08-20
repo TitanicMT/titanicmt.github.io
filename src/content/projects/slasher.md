@@ -3,8 +3,6 @@ title: SLASHER
 summary: A cooperative horror board game where players navigate a mansion, evade a supernatural slasher and collect artefacts to exorcise it — refined across two rounds of user evaluation.
 role: Gameplay designer and user experience analyst, on a course team
 tags: ["Game design", "UX research", "Playtesting", "Print"]
-cover: ../../assets/projects/slasher-board-photo.png
-coverAlt: The SLASHER game board mid-setup, showing the cutaway mansion, player tokens and the disasters reference card
 order: 4
 featured: false
 context: CCT419, a UX design board game course at the University of Toronto.
