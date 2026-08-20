@@ -1,19 +1,10 @@
 {
-  // ─────────────────────────────────────────────────────────────────────────
-  // Only used if this project is a WORKER (not a Pages project).
-  // Pages ignores this file entirely, so it is harmless either way.
-  //
-  // IMPORTANT: "name" must exactly match the existing Worker's name, or a
-  // deploy will create a second, separate Worker instead of updating yours.
-  // Find it in the dashboard at the top of the Worker's page, or in the
-  // *.workers.dev subdomain.
-  // ─────────────────────────────────────────────────────────────────────────
+  // Static assets served by the Worker. The Worker's NAME is deliberately not
+  // set here -- it is supplied by the deploy command in the Cloudflare
+  // dashboard (`npx wrangler deploy --name <worker>`), so the name lives in one
+  // place and cannot drift out of sync with the repo.
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "REPLACE-WITH-YOUR-WORKER-NAME",
   "compatibility_date": "2026-08-20",
-
-  // Serve the Astro build output as static assets. No Worker script needed:
-  // an assets-only Worker is a supported configuration.
   "assets": {
     "directory": "./dist",
     "not_found_handling": "404-page"
