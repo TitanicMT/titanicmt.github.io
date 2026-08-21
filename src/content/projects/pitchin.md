@@ -1,12 +1,14 @@
 ---
 title: PitchIn
 summary: An app for friends and small communities organising events together, built so the work, the money and the decisions are shared rather than quietly absorbed by one person.
+year: 2025
 role: UX research, interaction design, design system, usability testing
 tags: ["UI/UX", "Design system", "Usability testing", "Iterative design"]
 cover: ../../assets/projects/pitchin.png
 coverAlt: A hi-fi task flow through PitchIn — home dashboard, event details, adding a task, and a claimed task appearing on the event page
 order: 8
 featured: false
+context: INF2191 User Interface Design, Faculty of Information, University of Toronto.
 links:
   - label: "Project documentation on Notion"
     href: "https://chipped-carpet-f30.notion.site/PitchIn-Collaborative-Event-Planning-App-Project-Documentation-1dc8912eb0b580309691f64ebca9538d"

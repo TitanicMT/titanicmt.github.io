@@ -1,16 +1,17 @@
 ---
 title: Helping commuters find quality companions
 summary: A platform connecting public-transit commuters with each other, to make a long daily journey less lonely and safer than travelling alone.
+year: 2024
 role: Competitor analysis, user research, journey mapping, UI sketches and style tile — on a team of five
 tags: ["UX research", "Service design", "Journey mapping", "Prototyping"]
 cover: ../../assets/projects/commuters-final-screens.png
 coverAlt: Five screens from the final design — a route map, destination entry, nearby commuters shown as faces on the map, a companion profile, and a first message
-order: 5
+order: 6
 featured: false
 links:
   - label: "Full case study on Notion"
     href: "https://chipped-carpet-f30.notion.site/Helping-Commuters-Find-Quality-Companions-1568912eb0b580058fc5d5b8029d5383"
-context: Team project with Krishna Rana, Qiao Li, Ruisi Bi and Yiwen Zhang.
+context: INF1602 Fundamentals of User Experience, Faculty of Information, University of Toronto (Professor Velian Pandeliev). Team "Travel Buddies" with Krishna Rana, Qiao Li, Ruisi Bi and Yiwen Zhang.
 ---
 
 ## The problem

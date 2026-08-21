@@ -3,7 +3,8 @@ title: SLASHER
 summary: A cooperative horror board game where players navigate a mansion, evade a supernatural slasher and collect artefacts to exorcise it — refined across two rounds of user evaluation.
 role: Gameplay designer and user experience analyst, on a course team
 tags: ["Game design", "UX research", "Playtesting", "Print"]
-order: 4
+year: 2022
+order: 5
 featured: false
 context: CCT419, a UX design board game course at the University of Toronto.
 ---
@@ -32,6 +33,12 @@ the card system was too complex to reach for under pressure.
 **Iteration.** We built a high-fidelity prototype with graphic design matched to the
 slasher theme and a full rulebook. The action-card mechanics were simplified so players
 would actually use them.
+
+![Nine action cards from the print template — Flimsy Net, Emergency Flashlight, Adrenaline Injector, Makeshift Armor, First Aid Kit, Hide and Taser Device — each a red card with a single gold icon and one sentence of rules.](../../assets/projects/slasher-action-cards.png)
+
+The redesigned action cards, as sent to print. One icon, one sentence, one decision —
+the earlier versions asked players to parse a paragraph while a slasher was two rooms
+away, which is why nobody used them.
 
 **Randomness as a design tool.** Introduced controlled randomness to raise replayability
 without making outcomes feel arbitrary, and tuned difficulty so the threat stayed
